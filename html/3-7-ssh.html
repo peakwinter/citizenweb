@@ -1,0 +1,130 @@
+<!--
+#############################################################
+##
+## The Carte Blanche Guides
+## 3.7. Getting In: Guide to SSH and VNC
+## CC-BY-SA 3.0 Jacob Cook 2012
+##
+## For more information about this project, visit
+## http://jcook.cc/proj/cbg or http://github.com/jacook/cbg.
+##
+#############################################################
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>OFF THE GRID - 3.7 Getting In: Guide to SSH and VNC</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<h2><a href="index.html#3">Setting Up Your Personal Server</a></h2>
+<h1><a href="3-7-ssh.html">Getting In: Guide to SSH and VNC</a></h1>
+<div>
+<table cellspacing="0" border="0px" width="100%">
+<tbody>
+<tr>
+<td><a href="3-6-install.html">&lt;&lt; back</a></td>
+<td style="text-align: center;"><a href="index.html">[ table of contents ]</a></td>
+<td style="text-align: right;"><a href="3-8-net.html">next &gt;&gt;</a></td>
+</tr>
+</tbody>
+</table>
+</div><hr><br>
+<P>Now that we have our server assembled and our OS installed, we
+must make sure we can get inside!</P>
+<P>SSH is a protocol for secure communication between systems. It can
+be used for a wide variety of things, from executing commands on
+remote systems, to getting a remote terminal prompt on your local
+computer, to even running visual programs on a remote computer, but
+redirecting them to show up on your local computer's screen (X
+forwarding).</P>
+<P>For the purposes of this guide, we will want to set up SSH and get
+comfortable with using the terminal remotely. If you are running a
+headless server, this is going to be your best friend.</P>
+<br><H3>3.7.1 - Install OpenSSH</H3>
+<P>Chances are that our Ubuntu Server came with OpenSSH already
+installed (that's how important it is!), but in the off-chance it
+hasn't, fire up your trusty-dusty package manager and install it:</P>
+<P><CODE class=reg># sudo apt-get install openssh-server</CODE>
+</P>
+<P>Most of the configuration for OpenSSH is stored in
+<CODE>/etc/ssh/sshd_config</CODE>. This is your first
+stop for any additional configuration options, such as denying root
+login or allowing public-key authentication. We will cover these
+options in detail in chapter 3.13.</P>
+<P>The great thing about SSH is that (in most cases) it works right
+out of the box. First, make sure the server is running:</P>
+<P><CODE class=reg># sudo service ssh restart</CODE> 
+</P>
+<P>Next, on your local computer, make sure you have a valid SSH
+client. (This is the package <CODE class=inl>openssh-client</CODE>
+on Ubuntu, or just <CODE class=inl>openssh</CODE> on Arch.) To
+test your setup, use the following command with the correct
+information:</P>
+<P><CODE class=reg># ssh username@ip-address</CODE> 
+</P>
+<P>After this you will get a prompt asking for your password. Once
+you enter it, you should get a command prompt as if you were using
+the terminal on your server locally. Voila! Type &quot;exit&quot;
+when you want to get back to your local computer's command prompt.</P>
+<br><H3>3.7.2 – Securing SSH</H3>
+<H4>No Root Logins!</H4>
+<P>In its current state, your SSH is actually quite risky. Unless you laugh in the face of danger, you will want to take some steps to secure it. </P>
+<P>First, we will prevent root SSH logins to our server. This is a popular line of attack – people (scripts) hoping to find just that <I>one</I> server that got lax and lazy with its configuration. We won't fall for that, obviously.</P>
+<P>Edit your <CODE class=inl>/etc/ssh/sshd_config</CODE> file and change the following line:</P>
+<P><CODE class=reg>PermitRootLogin	No</CODE></P>
+<P>... then restart your SSH server. If you need to SSH into your server and change files/configurations that require root access, then you can SSH in as your normal user and use su/sudo, just like you would if you were working directly.</P>
+<H4>SSH Key Setup</H4>
+<P>What follows is completely optional but highly recommended. There is a way to set up a cryptographic key called an “SSH key” that will allow our computer to handle SSH connections without needing you to enter your password. There are two main reasons why people opt to use SSH keys:</P>
+<P>1. <B>Security</B> - Even if you have what you might consider to be a “good” password, if somehow that password is guessed or compromised than there is a lot of potential risk. With an SSH key, you can actually turn off password logins, meaning that people remotely won't even get a chance to <I>try</I> to crack your password. If they don't have your SSH key, then they're out in the cold.</P>
+<P>2. <B>Laziness</B> – Like I said, SSH keys allow you to SSH to your remote machine without having to use your password. So if you are someone who needs to SSH to your server frequently, it can be a pain having to enter your password every so often. Much easier to let your SSH key do the talking for you – if your computer can produce the right key, the server will never ask you for a login password.</P>
+<P>When you create an SSH key, you are creating two files: a <B>private</B> key and a <B>public</B> key. The private key is the actual file that is used to authenticate you. The public key contains a string that the server can use to compare with the private key and verify if it's really you trying to login. The private key is the one you do not want to lose.</P>
+<P>To create an SSH key, run the following command on your <B>client</B> machine:</P>
+<code class=reg># ssh-keygen -t rsa</code>
+<P>This will ask you a few questions. First, go ahead and save it in the default location. Second, it's a good idea to enter a passphrase with which to unlock your SSH key. This is intended to provide a good last line of defence: should your SSH key somehow to fall into the wrong hands, they still won't be able to get into your server. (Don't worry, if you set a passphrase here, you can still set it to automatically unlock itself on your own computer via <code class=inl>ssh-agent</code>.)</P>
+<P>After you've created your key and given it a passphrase, run the following command to upload it to your server:</P>
+<code class=reg># ssh-copy-id <I>username@servername</I></code>
+<P>This copies your public key to an “authorized keys” list, telling your server that whichever computer SSHes in with your private key in hand can be trusted. The neat thing about this is that you can put your SSH private key on any computer you own (even your Android smartphone) and be able to gain password-less access to your server.</P>
+<P>When you test your SSH connection, your client will automatically use your SSH key. It should only ask you for your passphrase the first time; if not, run the command <code class=inl>ssh-add</code> and it should be permanently added to your <code class=inl>ssh-agent</code>.</P>
+<P>It should go without saying that it's very important this key be kept secure. I would recommend storing a backup on a USB key that you can hide somewhere in your home with your personal files. And if you store it anywhere else on your computer/server, like in a backups folder, make sure you store it in an encrypted archive (see the chapter on Backups for how to do that).</P>
+<H4>Use Your SSH Key On Other Devices</H4>
+<P>If you wish to use your SSH key on...</P>
+<ul>
+<li>...Other Linux machines <B>OR</B> Mac OS X: Copy ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub to the same folder on your other Linux computer. Run <code class=inl>ssh-add,</code> then voila.</li>
+<li>...A Windows computer (hisssssss): Download <A HREF="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</A>. Enter your hostname/IP in the first section, then  choose “SSH.” In the menu on the left, choose SSH &gt; Auth. Browse to the location of your private key, click OK and start the session.</li>
+<li>...an Android phone: Copy your id_rsa file to your phone (in a preferably secure location) via your file transfer method of choice. Download <A HREF="https://play.google.com/store/apps/details?id=org.connectbot&amp;hl=en">ConnectBot</A> from the Play Store and install it. Open the app, press Menu and choose “Manage Public Keys.” Press Menu and choose “Import,” then browse to the location of the file and choose it. Note that when you create a new connection, you can hold down the line in the list and choose Edit Server, then explicitly set that you wish to use the key for that connection. This provides the best results.</li>
+</ul>
+<br><H3>3.7.3 - Install VNC</H3>
+<P>VNC is another way to remotely gain access to your computer. Where SSH gets you into the terminal, VNC is a more direct approach. It resembles the &quot;Remote Desktop&quot; application on Windows systems.</P>
+<P>This protocol is only worthwhile for servers with graphical interfaces, like the full version of Ubuntu. If you are using the
+Ubuntu Server we have been talking about, you will be better off sticking to SSH.</P>
+<P>Ubuntu comes with a built-in VNC server called <CODE>vino</CODE>. It is enabled by default.</P>
+<P>On your local machine you will need a VNC viewer. Ubuntu has one built-in named <CODE>vinagre</CODE> that will work nicely for our purposes. If you are using Arch, the <CODE>tightvnc</CODE> package includes a decent VNC viewer. From the command line, enter the following with your server's IP address:</P>
+<P><CODE class=ubu># vinagre 192.168.0.1</CODE> <CODE class=arch># vncviewer 192.168.0.1</CODE></P>
+<P>When it comes to securing your VNC connection, the best way to do that is to run VNC over an SSH tunnel and block the VNC port (5900) on your firewall. We will discuss port blocking and SSH tunnelling in the chapter on network security.</P>
+<br><H3>3.7.4 - Further Reading</H3>
+<UL>
+	<LI><A HREF="https://help.ubuntu.com/12.10/serverguide/openssh-server.html">OpenSSH Server - Ubuntu Server (12.10) Official Documentation</A>
+	<LI><A HREF="http://linux.die.net/man/5/sshd_config">ssh_config man page</A> 
+	<LI><A HREF="https://help.ubuntu.com/community/VNC">VNC - Community Ubuntu Documentation</A> 
+</UL><hr>
+<table cellspacing="0" border="0px" width="100%">
+<tbody>
+<tr>
+<td><a href="3-6-install.html">&lt;&lt; back</a></td>
+<td style="text-align: center;"><a href="index.html">[ table of contents ]</a></td>
+<td style="text-align: right;"><a href="3-8-net.html">next &gt;&gt;</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>
+<br>
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">The Carte Blanche Guides by <a xmlns:cc="http://creativecommons.org/ns#" href="http://jcook.cc/proj/cbg" property="cc:attributionName" rel="cc:attributionURL">Jacob Cook</a> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+</div>
+</div>
+
+
+</body>
+</html>
