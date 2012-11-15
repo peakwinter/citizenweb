@@ -2,7 +2,7 @@
 #############################################################
 ##
 ## The Carte Blanche Guides
-## 3.7 Getting In: Guide to SSH and VNC
+## 3.5 Getting In: Guide to SSH and VNC
 ## CC-BY-SA 3.0 Jacob Cook 2012
 ##
 ## For more information about this project, visit
@@ -14,19 +14,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CBG - 3.7 Getting In: Guide to SSH and VNC</title>
+  <title>CBG - 3.5 Getting In: Guide to SSH and VNC</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-<h2><a href="index.html#3">Setting Up Your Personal Server</a></h2>
-<h1><a href="3-7-ssh.html">Getting In: Guide to SSH and VNC</a></h1>
+<h2>The <i>Carte Blanche</i> Guide - <a href="index.html#3">Setting Up Your Personal Server</a></h2>
+<h1><a href="3-5-ssh.html">Getting In: Guide to SSH and VNC</a></h1>
 <div>
 <table cellspacing="0" border="0px" width="100%">
 <tbody>
 <tr>
-<td><a href="3-6-install.html">&lt;&lt; back</a></td>
+<td><a href="3-4-ubusrv.html">&lt;&lt; back</a></td>
 <td style="text-align: center;"><a href="index.html">[ table of contents ]</a></td>
-<td style="text-align: right;"><a href="3-8-net.html">next &gt;&gt;</a></td>
+<td style="text-align: right;"><a href="3-6-net.html">next &gt;&gt;</a></td>
 </tr>
 </tbody>
 </table>
@@ -42,7 +42,7 @@ forwarding).</P>
 <P>For the purposes of this guide, we will want to set up SSH and get
 comfortable with using the terminal remotely. If you are running a
 headless server, this is going to be your best friend.</P>
-<br><H3>3.7.1 - Install OpenSSH</H3>
+<br><H3>3.5.1 - Install OpenSSH</H3>
 <P>Chances are that our Ubuntu Server came with OpenSSH already
 installed (that's how important it is!), but in the off-chance it
 hasn't, fire up your trusty-dusty package manager and install it:</P>
@@ -68,7 +68,7 @@ information:</P>
 you enter it, you should get a command prompt as if you were using
 the terminal on your server locally. Voila! Type &quot;exit&quot;
 when you want to get back to your local computer's command prompt.</P>
-<br><H3>3.7.2 – Securing SSH</H3>
+<br><H3>3.5.2 – Securing SSH</H3>
 <H4>No Root Logins!</H4>
 <P>In its current state, your SSH is actually quite risky. Unless you laugh in the face of danger, you will want to take some steps to secure it. </P>
 <P>First, we will prevent root SSH logins to our server. This is a popular line of attack – people (scripts) hoping to find just that <I>one</I> server that got lax and lazy with its configuration. We won't fall for that, obviously.</P>
@@ -95,7 +95,7 @@ when you want to get back to your local computer's command prompt.</P>
 <li>...A Windows computer (hisssssss): Download <A HREF="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</A>. Enter your hostname/IP in the first section, then  choose “SSH.” In the menu on the left, choose SSH &gt; Auth. Browse to the location of your private key, click OK and start the session.</li>
 <li>...an Android phone: Copy your id_rsa file to your phone (in a preferably secure location) via your file transfer method of choice. Download <A HREF="https://play.google.com/store/apps/details?id=org.connectbot&amp;hl=en">ConnectBot</A> from the Play Store and install it. Open the app, press Menu and choose “Manage Public Keys.” Press Menu and choose “Import,” then browse to the location of the file and choose it. Note that when you create a new connection, you can hold down the line in the list and choose Edit Server, then explicitly set that you wish to use the key for that connection. This provides the best results.</li>
 </ul>
-<br><H3>3.7.3 - Install VNC</H3>
+<br><H3>3.5.3 - Install VNC</H3>
 <P>VNC is another way to remotely gain access to your computer. Where SSH gets you into the terminal, VNC is a more direct approach. It resembles the &quot;Remote Desktop&quot; application on Windows systems.</P>
 <P>This protocol is only worthwhile for servers with graphical interfaces, like the full version of Ubuntu. If you are using the
 Ubuntu Server we have been talking about, you will be better off sticking to SSH.</P>
@@ -103,7 +103,7 @@ Ubuntu Server we have been talking about, you will be better off sticking to SSH
 <P>On your local machine you will need a VNC viewer. Ubuntu has one built-in named <CODE>vinagre</CODE> that will work nicely for our purposes. If you are using Arch, the <CODE>tightvnc</CODE> package includes a decent VNC viewer. From the command line, enter the following with your server's IP address:</P>
 <P><CODE class=ubu># vinagre 192.168.0.1</CODE> <CODE class=arch># vncviewer 192.168.0.1</CODE></P>
 <P>When it comes to securing your VNC connection, the best way to do that is to run VNC over an SSH tunnel and block the VNC port (5900) on your firewall. We will discuss port blocking and SSH tunnelling in the chapter on network security.</P>
-<br><H3>3.7.4 - Further Reading</H3>
+<br><H3>3.5.4 - Further Reading</H3>
 <UL>
 	<LI><A HREF="https://help.ubuntu.com/12.10/serverguide/openssh-server.html">OpenSSH Server - Ubuntu Server (12.10) Official Documentation</A>
 	<LI><A HREF="http://linux.die.net/man/5/sshd_config">ssh_config man page</A> 
@@ -112,9 +112,9 @@ Ubuntu Server we have been talking about, you will be better off sticking to SSH
 <table cellspacing="0" border="0px" width="100%">
 <tbody>
 <tr>
-<td><a href="3-6-install.html">&lt;&lt; back</a></td>
+<td><a href="3-4-ubusrv.html">&lt;&lt; back</a></td>
 <td style="text-align: center;"><a href="index.html">[ table of contents ]</a></td>
-<td style="text-align: right;"><a href="3-8-net.html">next &gt;&gt;</a></td>
+<td style="text-align: right;"><a href="3-6-net.html">next &gt;&gt;</a></td>
 </tr>
 </tbody>
 </table>
