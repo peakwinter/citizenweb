@@ -18,7 +18,7 @@ p {
     font-family: sans-serif;
 }
 
-blockquote.codeml {
+div.codeml {
     font-family: monospace;
     background-color:#f9f9f9;
     margin-left: 15px;
