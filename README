@@ -1,4 +1,4 @@
-*The Carte Blanche Guides:* A comprehensive walkthrough and guide to Digital Sovereignty. Explaining Linux, Personal Data Servers, and Free Software for the security-minded activist and user.
+*The CitizenWeb Project:* A comprehensive walkthrough and guide to Digital Sovereignty. Explaining Linux, Personal Data Servers, and Free Software for the security-minded activist and user.
 
 --
 
@@ -9,13 +9,13 @@ If you are ...
  - Worried about governments snooping in your email and cloud data
  - Tired of the constant erosion of our rights online with no real alternatives
 
-... then read ahead, because this guide is for you!
+... then read ahead, because these guides are for you!
 
 
 There *are* alternatives to the closed corporate ecosystems of Google, Microsoft and Apple. There *are* alternatives to the daily destruction of privacy rights that occurs online. Take your data back into your own hands, and lose -none- of the functionality that you rely on. Build a server with all of the features you need and unlock. And hit the titans like Google where it hurts - deny them the ad revenue they get from selling your personal information to the highest bidder.
 
 
-Two guides are included:
+At this time, two guides are included:
 
 	- *Linux*: Dive into the basics of Linux, the free and open source operating system. Learn how to use software suites that, in most cases, won't cost you a dime - and are 100% open source. Use software that is customized to your interests, and learn to make your computer work for you. Never fear the changes or hassles another Windows version will bring!
 	- *Setting Up Your Personal Server*: Choose the features that are important to you, and ones you may be interested in maintaining. Set up a server on your home network, and connect it to the Internet. Host your own email and website safely and securely. Access your files, media, contacts and calendars remotely -- while keeping complete control of your data and who sees it.
@@ -28,9 +28,10 @@ If you're still not convinced why all of this is important, or if you aren't eve
 Topic List
 
     1. Introduction
-        1.1 Manifesto and FAQ
+        1.1 About and FAQ
         1.2 "What is Free Software, and Why Do I Give A Damn?" The Case for Making The Switch
         1.3 "What's wrong with Google?" Security, Safety and Rights On the Internet
+	1.4 Manifesto for a Decentralized Web
     2. Installing Linux
         2.1 What is Linux?
         2.2 Choosing a Distribution
@@ -52,8 +53,9 @@ Topic List
         3.9 Cloud Services: Setting up ownCloud
         3.10 Security: Firewalling and Threat Detection
         3.11 Managing and Streaming Your Media
-        3.12 APPENDIX: Guide to Virtual Machines
-        3.13 APPENDIX: Guide to FreeNAS
+	3.12 Social Networking: Decentralize with Tent
+        3.13 APPENDIX: Guide to Virtual Machines
+        3.14 APPENDIX: Guide to FreeNAS
     4. Crash Courses
         4.1 Backup Your Data
         4.2 Automate Using bash and cron
@@ -64,4 +66,5 @@ Topic List
 
 This guide is openly available and developed - Licensed under Creative Commons CC-BY-SA 3.0
 Current status of the project's various pages is listed in "status"
-Any suggestions are welcome -- submit them via a git request at https://github.com/jacook/cbg or email them direct to jacob [at] jcook [dot] cc
+Any suggestions are welcome -- submit them via a git request at 
+https://github.com/jacook/citizenweb or email them direct to jacob [at] jcook [dot] cc
