@@ -41,6 +41,7 @@ Topic List
         2.6 Arch: Using and Configuring Your New System
         2.7 Securing your Mail, Internet and Chat Applications
         2.8 APPENDIX: Popular Software & Open File Formats
+	2.9 APPENDIX: The Great Big Guide to Android
     3. Setting Up Your Personal Server
         3.1 Why should I bother with a personal server?
         3.2 Before You Begin: Options, Configuration and Hardware
@@ -56,10 +57,16 @@ Topic List
 	3.12 Social Networking: Decentralize with Tent
         3.13 APPENDIX: Guide to Virtual Machines
         3.14 APPENDIX: Guide to FreeNAS
-    4. Crash Courses
-        4.1 Backup Your Data
-        4.2 Automate Using bash and cron
-        4.3 Personalize Your Linux Desktop
+    4. Security on Other Systems
+	4.1 Securing Mail on Windows/OS X
+	4.2 Securing the Web on Windows/OS X
+	4.3 Securing Chat on Windows/OS X
+	4.4 Securing Files and Sharing on Windows/OS X
+    5. Crash Courses
+        5.1 Backup Your Data
+        5.2 Automate Using bash and cron
+        5.3 Personalize Your Linux Desktop
+	5.4 Encrypted Browsing with Tor
 
 
 --
