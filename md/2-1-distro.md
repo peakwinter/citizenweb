@@ -63,11 +63,11 @@ Arch Linux prides itself on its core philosophy: "Keep It Simple, Stupid!" In li
 These characteristics admittedly makes Arch one of the hardest Linux distributions to install and maintain, as everything must be selected by the user, installed and maintained without the kinds of blueprints that other distributions might offer. However the Arch community is very friendly, close-knit and features an amazing Wiki full of documentation. Arch is a great choice for power-users or those looking for a serious challenge with maximum reward and customization opportunity.
 
  [1]: http://distrowatch.com
- [2]: ../img/2-2-3.png
+ [2]: ../img/2-1-1.png
  [3]: http://xubuntu.org
  [4]: http://kubuntu.org
  [5]: http://lubuntu.net
  [6]: http://crunchbang.org
- [7]: ../img/mint-scr.png
- [8]: ../img/fedora-scr.png
- [9]: ../img/arch-scr.png
+ [7]: ../img/2-1-2.png
+ [8]: ../img/2-1-3.png
+ [9]: ../img/2-1-4.png

@@ -91,8 +91,8 @@ With the static IP in hand and the domain name registered, it's time to get them
 
 With the correct settings enabled, and the Internet ready to welcome our server, let's start assembling the computer itself.
 
- [1]: ../img/diag-na.png
- [2]: ../img/diag-fw.png
+ [1]: ../img/3-3-1.png
+ [2]: ../img/3-3-2.png
  [3]: http://www.newegg.com
  [4]: http://www.tigerdirect.com
  [5]: http://www.misco.co.uk
