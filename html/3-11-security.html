@@ -1,0 +1,112 @@
+<h2>3.11.1 - ufw, the Uncomplicated Firewall</h2>
+
+<p>One of Linux's most commonly used firewall systems is <code>iptables</code>. Iptables is an extremely customizable and extensible firewalling solution, however it is very complicated to set up and maintain on its own. Luckily we have <code>ufw</code>. ufw operates by establishing certain rules in its own front end, then translating those rules into the many lines that iptables can understand and execute.</p>
+
+<p>Install <code>ufw</code>:</p>
+
+<p><code>sudo apt-get install ufw</code> </p>
+
+<p>We will set our firewall to deny connections that we have not explicitly granted by default. To do this, run:</p>
+
+<p><code>sudo ufw default deny</code></p>
+
+<p>At this point, we can enable our firewall with:</p>
+
+<p><code>sudo ufw enable</code> </p>
+
+<p>Now it will be up to us to set specific rules (and open ports) based on the apps/servers we are running. This goes for anything operating off of this server or any other client on the internal network that requires open ports.</p>
+
+<h2>3.11.2 - Setting ufw Rules</h2>
+
+<p>To allow traffic through our firewall, we will need to allow ports through it. We can do that with:</p>
+
+<p><code>sudo ufw allow $xxxx</code> </p>
+
+<p>This will allow any system externally to use port "xxxx" on your server. This may be a good option for setting up indiscriminate servers like for email or web hosting, but what if you want to only offer services to your internal network? For example, you might host a Samba server to share and edit files on the network, but you might not necessarily want this open to the internet, even if it is password-protected. Then the following rule is for you:</p>
+
+<p><code>sudo ufw allow from 192.168.0.0/24 to any port $xxxx</code> </p>
+
+<p>This allows any system on your network (that has an address in the range of 192.168.0.0) to access port "xxxx" on your server.</p>
+
+<p>Notice that UFW can also recognize a certain number of applications and server names instead of just the port number. You could run:</p>
+
+<p><code>sudo ufw allow Apache</code> </p>
+
+<p>... and UFW would open port 80 on your server to the Internet. Port 80 is the web port that Apache accepts connections on.</p>
+
+<p>To list your rules, run <code>sudo ufw status numbered</code> and you will get a numbered list of rules that are currently active. To delete a rule you've already set up, grab its number from that list and run <code>sudo ufw delete $xx</code>.</p>
+
+<p>This guide explains how to set up several different services that, depending on your usage, you may want to open up to your internal network or the internet. Remember that the ports have to be open before you will be able to use them! Here is a list of the common applications and ports you might want to allow through.</p>
+
+<ul>
+<li><strong>Remote Connect</strong>: port 22 for SSH, port 5900 for VNC</li>
+<li><strong>Mail</strong>: port 143 for IMAP, port 110 for POP; port 25 for SMTP, port 587 for SMTP submission (optional)</li>
+<li><strong>Web</strong>: port 80 for standard HTTP, port 443 for SSL HTTPS, port 3306 for MySQL</li>
+<li><strong>Network Controller</strong>: ports 53 and 953 for DNS, ports 67 &amp; 68 for DHCP, port 5351 for NAT</li>
+<li><strong>File Sharing</strong>: port 21 for FTP, ports 137-139 and 445 for Samba, port 69 for TFTP, port 192 for AFP (Apple Filesharing Protocol), port 2049 for NFS (Linux Filesharing)</li>
+<li><strong>Windows Services</strong>: port 139 for NetBIOS, port 161 for SNMP</li>
+<li><strong>Media Streaming</strong>: port 3689 for DAAP (Apple/iTunes), ports 1900 and 5000 for uPnP</li>
+</ul>
+
+<h2>3.11.3 - SSH Tunnelling: Maintain Secure Access through a Closed Firewall</h2>
+
+<p>For applications you don't want to allow through to the Internet (if you think you are going to rarely use them away from home, or if you have significant security concerns), but you still might want to use them someday, it's good practice to use them over an SSH tunnel. You can create SSH tunnels with the following format, replacing the values where necessary:</p>
+
+<p><code>ssh -f -L $localport:localhost:$remoteport $remotehost -N</code></p>
+
+<p>The local port should be a port that is not already in use on your client computer. <code>localhost</code> can be left alone; this creates the tunnel to your client computer. <code>remoteport</code> refers to the port for whatever service you want to tunnel through. And of course <code>remotehost</code> is the address of your server on the Internet. So, for example, if you set up the following...</p>
+
+<p><code>ssh -f -L 9876:localhost:5900 server.mydomain.com -N</code></p>
+
+<p>... this will create an SSH tunnel for Minecraft on my computer. Simply connect Minecraft to a server located at localhost:9876 and you can use it via a remote connection, as if you were just connected to the local network.</p>
+
+<h3>3.11.4 - Setting up fail2ban</h3>
+
+<p>Our firewall is in place, which will go a long way to helping secure our system from most attack attempts. However we will go a step further by using <code>fail2ban</code>. Fail2ban monitors the logs of network-capable applications for entry attempts and repeated failures, and promptly bans the associated IP addresses for a determined amount of time. This can help dissuade and eliminate the threat posed by certain bots that like to roam the internet, testing many different attack strategies at once to try and find one that sticks. It also helps stop some DDoS attempts, which are commonly used to bring down websites and other services.</p>
+
+<p>Install fail2ban with:</p>
+
+<p><code>sudo apt-get install fail2ban</code> </p>
+
+<p>Make a copy of the configuration template to the one we will actually be working from:</p>
+
+<p><code>sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local</code></p>
+
+<p>Open up <code>/etc/fail2ban/jail.local</code> in your text editor and modify the following fields:</p>
+
+<ul>
+<li><strong>ignoreip</strong>: set this to your internal network's subnet (like 192.168.0.0/24). This will keep fail2ban from blocking you if you trip its conditions while testing your services.</li>
+<li><strong>bantime</strong>: Like it says on the tin, this is the amount of time the offending IPs are banned for (in seconds).</li>
+<li><strong>maxretry</strong>: By default, the amount of failed attempts that should be allowed before an IP is banned.</li>
+</ul>
+
+<p>Further down in the file, you will find a section for "Action Shortcuts." The line for default action begins with "action," and can be set here. There are three options when triggered, explained above: ban only, ban and send an email with the IP information, or ban and send an email with IP AND relevant log information.</p>
+
+<p>The next section, "Jails," deals with the services we want to monitor. The entries you make in this section will depend on what services you have enabled. There are sections installed by default for ssh, Apache, ftp, postfix, etc. For some services, there are multiple jails, each that monitor for different circumstances. For example, "apache" monitors authorization attempts to your website, while "apache-php" monitors repeated failures in access to PHP files, which can often signify someone fishing for a way into your site's configuration. Make sure you select any jail that you feel you will need based on your setup.</p>
+
+<p>To enable a jail, uncomment every line within it after the "[xxxx]" section, then set enabled to equal "true".</p>
+
+<p>Once you have completed the configuration, you can start fail2ban with <code>sudo service fail2ban start</code>. It will immediately begin monitoring the selected services and banning repeat offenders accordingly.</p>
+
+<p>With some services, errors can come up innocently yet frequently. If you create a broken link to a PHP page on your website, for example, and you have the apache-php jail enabled, you might be sending people to an error screen that can ban them if they try to refresh it too much. Keep this in mind when enabling jails AND when choosing a ban time. </p>
+
+<h2>3.11.5 - More Security Tips</h2>
+
+<ul>
+<li><strong>SSH</strong>: Make sure you've disabled root logins as well as password logins for SSH, and are only using key-based logins if at all possible. Remember to keep your keys safe on your devices!</li>
+<li><strong>Mail</strong>: Remember to set your <code>smtpd_recipient_restrictions</code> in Postfix, and to make <code>ssl = required</code> in Dovecot.</li>
+<li><strong>Apache/ownCloud</strong>: Any websites set up that handle password authentication or the transmission of even <em>remotely-</em>sensitive data should have HTTPS enforced in the settings.</li>
+<li><strong>File Sharing and Media Streaming</strong>: Set permissions where possible so that only your authorized network users have read/write privileges. Block services like Samba, uPnP and AFP from being used outside your network by blocking their ports at the firewall.</li>
+<li><strong>Backups</strong>: Encrypt any backups that are stored on your server for an extra level of protection.</li>
+<li><strong>In General</strong>: It's better to use SSH tunnels for applications you only use remotely on an infrequent basis than to leave them open and forget about them!</li>
+</ul>
+
+<p>Instructions for how to enable these tips can be found in their respective sections of this guide.</p>
+
+<h2>3.11.6 - Further Reading</h2>
+
+<ul>
+<li><a href="http://ubuntuforums.org/showthread.php?t=823741">UFW Questions and Answers - Ubuntu Forums</a></li>
+<li><a href="http://www.fail2ban.org/wiki/index.php/Main_Page">Fail2ban Wiki</a></li>
+</ul>
+
