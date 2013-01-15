@@ -1,0 +1,128 @@
+<h2>3.10.1 - What is ownCloud?</h2>
+
+<p>ownCloud is a framework for personal cloud services that you can run on any server, for work or personal use. In plain English, it gives you many of the same services that platforms like Google can provide for you on a daily basis. But, as with everything else in this guide, you get the benefit of assuring your own data and full ownership as well.</p>
+
+<p>ownCloud has many features, as well as a plugin system that allows even more to be added externally. Here is a brief summary of its core functionality:</p>
+
+<ul>
+<li><p><strong>Files</strong> - ownCloud can host your files for you, much in the same way you would do with your Google Drives or Google Docs. You can then access them on any web-enabled device, anywhere around the world, just like your Google Drive. The only difference is that you cannot -yet- edit rich text documents or spreadsheets like you can with Google Drive. That being said, it has built-in document readers (including for PDF) which makes it a decent everyday alternative to the file storage features of Google Drive.</p></li>
+<li><p><strong>Music</strong> - You can also host your music library with ownCloud and be able to play it from anywhere in the world. This is a major plus if you have a phone or music device with limited storage space, and you cannot put everything you want on the device at once. Or, if you are at a friend's home and you want to show him some of your new tracks. ownCloud's built in music player is fast and easy to use.</p></li>
+<li><p><strong>Photos</strong> - Just like you can host your music and files, you can also store your photos, eliminating the need for external services like Flickr or Picasa. Set up galleries and share them with others via the built-in interface.</p></li>
+<li><p><strong>Contacts</strong> - One of my personal favourite features of ownCloud is its contact storage system. First, you can set up and access your email/phone contacts easily from the web interface. But where it really shines is its CardDAV syncing system. You can set it up to sync with your other computers and devices whenever a contact is added on any of them, easily replacing the contact sync features of Gmail or Apple's iCloud.</p></li>
+<li><p><strong>Calendar</strong> - With the built-in calendar system you can view your schedule locally or remotely. But where it gets really useful - like with Contacts - is the sync capability. You can sync your devices' calendars with your ownCloud calendar via CalDAV, and whenever you add or modify an event from one of these devices, all the others will update seamlessly. This replaces Google Calendar or Apple's iCloud.</p></li>
+<li><p><strong>Tasks</strong> - This feature isn't as cleanly implemented as it should be (yet), but you can easily keep track of your tasks via the ownCloud's easy-to-use web interface.</p></li>
+</ul>
+
+<p><img src="../img/3-10-1.png" alt="" /></p>
+
+<h2>3.10.2 - Installing ownCloud</h2>
+
+<p>Download the latest ownCloud source from its <a href="http://owncloud.org/support/install/">website here</a>. Make sure you choose the most recent branch of code available - at the time of writing that is 4.5.</p>
+
+<p>Note that you will need to have Apache installed and configured properly to use ownCloud. Don't skip that guide! We cover Apache installation in guide 3.9.</p>
+
+<p>Extract the package to the path of your choice. If this is the only web service you will use on your server, that path would be <code>/var/www/</code>; otherwise, you should extract it to <code>/usr/share/</code>.</p>
+
+<pre><code>tar -xvjf owncloud-*.tar.bz2
+cp -r owncloud /path/of/your/choice
+</code></pre>
+
+<p>Next, go into that directory and make sure that certain critical files have the correct permissions. Change the owner of "apps" "config" and "data" folders, and all of their contents, to that of the webserver application. This guide will assume that you are running Apache as your webserver, like we established earlier in the guide, so that user is named <code>www-data</code>.</p>
+
+<pre><code>cd /usr/share/owncloid
+mkdir data
+chown -R www-data:www-data /usr/share/owncloud/install/apps
+chown -R www-data:www-data /usr/share/owncloud/install/config
+chown -R www-data:www-data /usr/share/owncloud/data
+</code></pre>
+
+<p>Next we will set up our Apache VirtualHost file for this service. This guide will show how to make a configuration that works over HTTPS, and automatically redirects any HTTP connections to HTTPS. Create a new file in <code>/etc/apache2/sites-available</code> named <code>owncloud</code> that resembles something like this:</p>
+
+<pre><code>    <VirtualHost *:80>
+      ServerName subdomain.mydomain.com
+      DocumentRoot /usr/share/owncloud
+  RewriteEngine On
+  RewriteCond %{SERVER_PORT} !^443$
+  RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
+    </VirtualHost>
+</code></pre>
+
+<p>Now, create one named <code>owncloud-ssl</code> in the same folder, replacing the SSL certificate location and information where necessary.</p>
+
+<pre><code><VirtualHost *:443>
+  ServerName remote.jcook.cc
+  DocumentRoot /usr/share/owncloud   
+  <Directory /usr/share/owncloud>
+    AllowOverride All
+  </Directory>
+  SSLEngine On
+      SSLCertificateFile    /etc/ssl/certs/mycertificate.crt
+      SSLCertificateKeyFile /etc/ssl/private/myprivatekey.key        
+</VirtualHost>
+</code></pre>
+
+<p>Make sure you include the <code>AllowOverride All</code> in there; that will allow ownCloud to set its own custom parameters for security purposes.</p>
+
+<p>Save these and activate them in Apache, then we are ready to go!</p>
+
+<pre><code>sudo a2ensite {owncloud,owncloud-ssl}
+sudo service apache2 reload
+</code></pre>
+
+<p>Open up your browser and navigate to the server name that you set up earlier. You will be guided through an installation wizard that will set up a database and administrative user. For more information about this, refer to guide chapter 3.9.</p>
+
+<p><img src="../img/3-10-2.png" alt="" /></p>
+
+<p>Once ownCloud is properly set up, you will see its main screen which is easily identifiable. Click the gear icon and you will eventually find the Admin screen, where you can personalize more about your ownCloud implementation.</p>
+
+<p><img src="../img/3-10-3.png" alt="" /></p>
+
+<p>And that's it! You can use its intuitive interface to store and share your files, set up calendar appointments, and organize the media. Have fun with your own personal cloud!</p>
+
+<h2>3.10.3 - Setting up Contacts, Calendar and File Sync</h2>
+
+<p>As the contacts and calendar features of ownCloud are so helpful, this guide will also explain how to synchronize them with your personal devices.</p>
+
+<h3>Thunderbird: Contact and Calendar Sync</h3>
+
+<p>To synchronize your contacts with Thunderbird:</p>
+
+<ol>
+<li>Go to your ownCloud web interface and click Contacts. From there, click the small gear logo underneath the contact list.</li>
+<li>Click "More..." and select "Show CardDAV Link" next to the address book you want to sync. Copy the address that comes up.</li>
+<li>Download and install the <a href="http://www.sogo.nu/fr/downloads/frontends.html">SoGO Connector Thunderbird Plugin</a> in Thunderbird.</li>
+<li>Open up Thunderbird and click "Address Book."</li>
+<li>In the Address Book, click File > New > Remote Address Book. Set the URL as the one that you copied from ownCloud. Give it a name as well. If you do not want changes made in Thunderbird to be synced back to your ownCloud server, then choose "Read Only."</li>
+<li>Click OK, then right-click the address book and choose Synchronize. (You may need to close and re-open the address book before this will work.)</li>
+</ol>
+
+<p>To synchronize your calendar with Thunderbird:</p>
+
+<ol>
+<li>Go to your ownCloud web interface and click Calendar. From there, click the calendar logo in the upper right.</li>
+<li>Choose the calendar you want to sync, then click "CalDAV Link" and copy the link.</li>
+<li>In Thunderbird, install the Lightning calendar addon by going to Tools > Addons then searching for Lightning and installing it.</li>
+<li>Restart Thunderbird and click the Calendar icon that appears in the upper right.</li>
+<li>Right-click in the Calendar field and choose "New Calendar..."</li>
+<li>In the window that pops up, choose "On the Network" and click Next. Choose CalDAV and place the calendar URL you copied from ownCloud in the space provided. Click Next.</li>
+<li>Choose a name and colour for your calendar, then click Next. Your calendar will automatically be synchronized.</li>
+</ol>
+
+<h3>ownCloud Client: File Sync for Desktops</h3>
+
+<p>To keep your ownCloud folder synchronized with a folder on your computer, the easiest way is to install the custom ownCloud client for desktop. There are versions for Windows, Mac OS X and Linux. Go to <a href="http://owncloud.org/sync-clients/">the sync clients page</a>, download the installation package, and follow the easy-to-use wizard to get it set up.</p>
+
+<h3>Android: Contact, Calendar and File Sync</h3>
+
+<p>On Android, you must download/purchase a couple of applications in order to sync your contacts and calendars. </p>
+
+<p>For contact sync, download <a href="https://play.google.com/store/apps/details?id=org.dmfs.carddav.Sync&amp;feature=nav_other#?t=W251bGwsMSwxLDYsIm9yZy5kbWZzLmNhcmRkYXYuU3luYyJd">CardDAV Sync</a> from the Play Store. From here, you can add a Sync account from your Preferences application, just like if you were to add a Google account to your phone. For calendar sync, download <a href="https://play.google.com/store/apps/details?id=org.dmfs.caldav.lib&amp;feature=more_from_developer#?t=W251bGwsMSwxLDEwMiwib3JnLmRtZnMuY2FsZGF2LmxpYiJd">CalDAV Sync</a> which is made by the same developer and can be configured similarly.</p>
+
+<p>For file synchronization, there is the <a href="https://play.google.com/store/apps/details?id=com.owncloud.android&amp;feature=nav_result#?t=W251bGwsMSwxLDMsImNvbS5vd25jbG91ZC5hbmRyb2lkIl0.">ownCloud app</a> that will enable cloud sync between your phone and your ownCloud server. Or, you can use any "cloud sync" app on the Android that supports the WebDAV format. Just go into ownCloud, click Settings > Personal, then copy the WebDAV link into the application.</p>
+
+<h2>3.10.4 - Further Reading</h2>
+
+<ul>
+<li><a href="http://doc.owncloud.org/">ownCloud Documentation Centre</a></li>
+</ul>
+
