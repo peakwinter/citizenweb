@@ -1,0 +1,89 @@
+<h2>3.13.1 – What are Virtual Machines?</h2>
+
+<p>A virtual machine is a simulation of an operating system that can run within a different operating environment. Rather than only booting an operating system natively, like we do every time we start up our computers, virtual machines make it possible to run different operating systems and supported applications natively from your computer.</p>
+
+<p>Here are a few use cases for using a Virtual Machine:</p>
+
+<ul>
+<li><strong>You work frequently on applications that require Windows.</strong> There are many special or proprietary apps that are only available on Windows for specific lines of work. You can install Linux as the principal operating system and run Windows via a virtual machine whenever you need to access this specific program.</li>
+<li><strong>You have a server, and you want to run multiple types of server architectures on the same machine simultaneously.</strong> For example, you want to operate an instance of Ubuntu Server to provide your email and web hosting, but you want to use FreeNAS to provide your media hosting and filesharing services. You can do this very safely on one computer just by using virtual machines.</li>
+<li><strong>You want to practice working in a specific operating system or Linux distribution before switching over to it entirely.</strong> Linux distro live CDs can be slow, and not necessarily indicative of the real user experience. Trying out an OS or distro in a virtual machine before you switch your whole computer is a great way to see what you might be getting yourself into.</li>
+<li><strong>You are a software developer, and you need to test your program on a different operating system, or under different configurations.</strong> There is obviously no need to buy multiple computers to achieve this, when you can simply install the OS via a virtual machine. You can also use specifically old operating system images to test how your software reacts to these environments.</li>
+</ul>
+
+<p>In order to use a virtual machine, your computer or server must have adequate processing power. It is advised that your computer have a 64-bit processor, with at least two cores. Intel processors can feature VT-x technology, which is highly recommended for running virtual machines.</p>
+
+<h2>3.13.2 – Install VirtualBox and Set Up a VM</h2>
+
+<p>These instructions are for Oracle VirtualBox, an application that manages and runs virtual machines. It will show how to run VirtualBox via command-line (for Ubuntu Server) and graphical interface.</p>
+
+<p>If your processor has special virtualization capability (required for 64-bit VMs), like Intel VT-x, you will need to enable this in your BIOS/UEFI configuration first. Look through your motherboard's manual for instructions on how to do this.</p>
+
+<p>To install VirtualBox, run <code>sudo apt-get install dkms virtualbox</code>. This will install VirtualBox and the system to keep its required kernel modules up to date.</p>
+
+<h3>Via Ubuntu Desktop</h3>
+
+<p>Go to the sidebar and launch VirtualBox from the Search menu. You are presented with the main screen.</p>
+
+<p><img src="../img/3-13-1.png" alt="" /></p>
+
+<p>From here, you can see a list of your virtual machines in the left-hand side bar, as well as the controls for your VMs right above that.</p>
+
+<p>To create a new virtual machine, click New, which will bring up the wizard. It will ask you to give a name to your virtual machine, to choose the operating system type and the version of your operating system.</p>
+
+<p>Make sure that, if you wish to run a 64-bit operating system, you choose the 64-bit version of your OS displayed here.</p>
+
+<p>The next screen will allow you to choose the memory size of your virtual machine. For most Linux-based VMs, 512MB will suffice. For Windows-based VMs it may be a good idea to use 1024MB. This will of course depend on how much RAM your system has to begin with.</p>
+
+<p><img src="../img/3-13-2.png" alt="" /></p>
+
+<p>Now you can set the virtual hard drive space that your virtual machine will run from. This will create a file that acts as a container for everything held in your virtual machine. Click "Create" and choose "VDI (VirtualBox Disk Image)." The next screen will allow you to choose a dynamically-allocated image or a fixed-size image. Dynamically-allocated images are a good option, because you can set a maximum theoretical size for the image without actually taking up all of that disk space until your VM actually does so. If you choose fixed-size, a 50GB disk image (for example) would instantly take up 50GB of space on your disk, regardless if the VM is actually using that much space or not.</p>
+
+<p>The next screen will allow you to set the size of your virtual disk. You obviously must set a size that will fit on your physical hard drive. Linux distributions (especially ones that do not host media files) do not require much space to operate; they will do fine with a range of 10 to 20GB. Larger operating systems like Windows will require a minimum of at least 25 to 50GB to operate.</p>
+
+<p>Once you click "Create," your new VM will show up in the list. When you are ready, click "Start" above the list to begin the process of installing your operating system. A screen will come up that will allow you to choose an installation source.</p>
+
+<p><img src="../img/3-13-3.png" alt="" /></p>
+
+<p>From here, you can choose either your CD drive (if you have your OS' installation disc loaded), or an ISO file to install from a downloaded install image. Then you can follow the normal installation process for your chosen operating system.</p>
+
+<h3>Via Ubuntu Server (Advanced)</h3>
+
+<p>You can set up a new virtual machine in VirtualBox using the command line. Here is an example command and its important features:</p>
+
+<p><code>VBoxManage createvm --name "Ubuntu 11.04 Server" --register</code></p>
+
+<p>This creates our virtual machine, named "Ubuntu 11.04 Server," and registers it with VirtualBox.</p>
+
+<p><code>VBoxManage modifyvm "Ubuntu 11.04 Server" --memory 512 --acpi on --boot1 dvd --nic1 bridged --bridgeadapter1 eth0</code></p>
+
+<p>This sets our VM up with 512MB of RAM space, enables ACPI support, sets the machine to look for a DVD to boot from first before anything else, and sets up a network interface that bridges to our own, so that we can use the Internet from our virtual machine. If you are using a wireless network card instead of an ethernet card, make sure you change <code>eth0</code> to <code>wlan0</code>.</p>
+
+<p><code>VBoxManage createhd --filename Ubuntu_11_04_Server.vdi --size 10000</code></p>
+
+<p>This creates a virtual hard drive file named "Ubuntu<em>11</em>04_Server.vdi", with a size of 10,000 MB (or 9.77GB).</p>
+
+<p><code>VBoxManage storagectl "Ubuntu 11.04 Server" --name "SATA Controller" --add sata</code></p>
+
+<p>This sets up a virtual SATA controller to connect our virtual hard drive.</p>
+
+<p><code>VBoxManage storageattach "Ubuntu 11.04 Server" --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium Ubuntu_11_04_Server.vdi</code></p>
+
+<p>This actually connects our virtual hard drive to our new virtual machine.</p>
+
+<p><code>VBoxManage storageattach "Ubuntu 11.04 Server" --storagectl "SATA Controller" --port 1 --device 0 --type dvddrive --medium /home/ubuntu-11.04-server-amd64.iso</code></p>
+
+<p>And finally, this connects a downloaded ISO install image on our hard drive, located at <code>/home/ubuntu-11.04-server-amd64.iso</code>, to our virtual machine, so that it will boot from it and install the operating system.</p>
+
+<p>In order to run virtual machines "headlessly" - that is, without a direct monitor connection or a window environment so we can actually see it, we must enable a few extra features in VirtualBox. First, download <a href="https://www.virtualbox.org/wiki/Downloads">the VirtualBox extension pack</a> that corresponds to the version of VirtualBox that you are running. Next, install it in VirtualBox by running <code>sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-*.vbox-extpack</code> from the folder you downloaded it to. Finally, run <code>sudo adduser $username vboxusers</code> with the appropriate username to give our user the ability to run the VM with these new features.</p>
+
+<p>To actually run our virtual machine and begin the installation process, run <code>VBoxHeadless --startvm "Ubuntu 11.04 Server"</code>. Then, on a remote machine, connect to your server via RDP. You should be able to view the live contents of your virtual machine as it is running.</p>
+
+<p>When you are done using your virtual machine, you should shut down the operating system it is running, just like you would a normal computer. If you need to kill it without a normal shutdown, run <code>VBoxManage controlvm "Ubuntu 11.04 Server" poweroff</code>.</p>
+
+<h2>3.13.3 - Further Reading</h2>
+
+<ul>
+<li><a href="https://www.virtualbox.org/manual/ch07.html">VirtualBox - Remote Virtual Machines</a></li>
+</ul>
+
