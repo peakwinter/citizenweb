@@ -76,8 +76,8 @@ Each command you will want to use on the command line has a corresponding "manpa
 There, the Terminal is easy, just like I told you! It might not seem very convenient at first, but the more you get to use it, the quicker frequent tasks can pass by, leading to great increases in your productivity. For example, to create a TAR archive of a file (or folder), by the standard way you would need to launch the Archive Manager application, mouse over to "New Archive," click it, type in a name, type in a place for the archive to be, mouse over the checkboxes for options, click and drag your folders, etc etc etc. But with the Terminal, after learning how the command works the first time, you can simply run a quick command from memory to do exactly what you want. You can even create scripts (called "bash scripts") to automate tasks using the Terminal's language. We will cover this in a future guide. But for now, pat yourself on the back, because you've conquered your fear of the Terminal!
 
 
- [1]: ../img/2-3-1.png
- [2]: ../img/2-3-2.png
- [3]: ../img/2-3-3.png
- [4]: ../img/2-3-4.png
- [5]: ../img/2-3-5.png
+ [1]: ../img/2-3-1.jpg
+ [2]: ../img/2-3-2.jpg
+ [3]: ../img/2-3-3.jpg
+ [4]: ../img/2-3-4.jpg
+ [5]: ../img/2-3-5.jpg

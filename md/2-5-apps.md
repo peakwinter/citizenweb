@@ -82,10 +82,10 @@ For programming text editors, **Geany** is a good option. Other options include 
 ![][7]
 
 
- [1]: ../img/2-5-1.png
- [2]: ../img/2-5-2.png
- [3]: ../img/2-5-3.png
- [4]: ../img/2-5-4.png
- [5]: ../img/2-5-5.png
- [6]: ../img/2-5-6.png
- [7]: ../img/2-5-7.png
+ [1]: ../img/2-5-1.jpg
+ [2]: ../img/2-5-2.jpg
+ [3]: ../img/2-5-3.jpg
+ [4]: ../img/2-5-4.jpg
+ [5]: ../img/2-5-5.jpg
+ [6]: ../img/2-5-6.jpg
+ [7]: ../img/2-5-7.jpg

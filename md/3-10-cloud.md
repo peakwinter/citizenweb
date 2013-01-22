@@ -122,10 +122,10 @@ For file synchronization, there is the [ownCloud app][9] that will enable cloud 
 
 * [ownCloud Documentation Centre][10]
 
- [1]: ../img/3-10-1.png
+ [1]: ../img/3-10-1.jpg
  [2]: http://owncloud.org/support/install/
- [3]: ../img/3-10-2.png
- [4]: ../img/3-10-3.png
+ [3]: ../img/3-10-2.jpg
+ [4]: ../img/3-10-3.jpg
  [5]: http://www.sogo.nu/fr/downloads/frontends.html
  [6]: http://owncloud.org/sync-clients/
  [7]: https://play.google.com/store/apps/details?id=org.dmfs.carddav.Sync&feature=nav_other#?t=W251bGwsMSwxLDYsIm9yZy5kbWZzLmNhcmRkYXYuU3luYyJd

@@ -88,17 +88,17 @@ If your internet-facing ethernet port is connecting to a DSL modem, check to see
 
  [1]: http://www.ubuntu.com/download/server
  [2]: https://help.ubuntu.com/community/Installation/FromUSBStick
- [3]: ../img/3-5-1.png
- [4]: ../img/3-5-2.png
- [5]: ../img/3-5-3.png
- [6]: ../img/3-5-4.png
+ [3]: ../img/3-5-1.jpg
+ [4]: ../img/3-5-2.jpg
+ [5]: ../img/3-5-3.jpg
+ [6]: ../img/3-5-4.jpg
  [7]: 6-ssh
  [8]: 7-net
  [9]: 9-web
  [10]: 8-email
  [11]: 12-media
  [12]: 13-vms
- [13]: ../img/3-5-5.png
+ [13]: ../img/3-5-5.jpg
  [14]: http://www.subnet-calculator.com/
  [15]: https://help.ubuntu.com/community/ADSLPPPoE
  [16]: https://help.ubuntu.com/12.04/installation-guide/

@@ -12,22 +12,22 @@
 
 <p>Load your install CD into your server, and boot it up, after having made sure that your CD/DVD drive is higher in the boot order list. Choose your language and the obvious options from the screen that comes up. It will ask you more questions based on your language, locale and other preferences. </p>
 
-<p><img src="../img/3-5-1.png" alt="" /> 
+<p><img src="../img/3-5-1.jpg" alt="" /> 
 After this it will attempt to detect your hardware settings and will ask you if you wish to use DHCP. If your server is connected to a network that has a router, choose to use DHCP for now. If not, choose "Configure the network manually" and you will have the option to set your desired static IP, subnet and gateway settings. After the install, we will walk through specific network settings to enable based on your configuration.</p>
 
 <p>Set the hostname and timezone information as per your preferences. Next the installer will take you to the disk configuration menu.</p>
 
-<p><img src="../img/3-5-2.png" alt="" /> 
+<p><img src="../img/3-5-2.jpg" alt="" /> 
 You will most likely want to choose "Guided - use entire disk". If this system will be running virtual machines or will share disk space with other operating systems, choose "Manual" and create a partition for "/" that reflects the size you want your server storage to have.</p>
 
 <p>After this, your base system will be installed:</p>
 
-<p><img src="../img/3-5-3.png" alt="" /> 
+<p><img src="../img/3-5-3.jpg" alt="" /> 
 Next, you will set up a base user and choose its password, as well as setting the administrative password for the root user; then you will be asked if you want to encrypt the Home directory on the server. Unless you have extremely sensitive security concerns, I would not bother with encrypting the home directory on a server. We will be encrypting our backed-up data before we place it on the server anyway. Then you will be asked to choose how you want to receive your updates: either manually or automatically. Choose based on your preference. It is often convenient to have your server automatically receive security updates, so you don't need to worry about it.</p>
 
 <p>Finally, you will be asked which software packages should be installed by default:</p>
 
-<p><img src="../img/3-5-4.png" alt="" /> 
+<p><img src="../img/3-5-4.jpg" alt="" /> 
  1.  <strong>OpenSSH Server</strong>: It is highly recommended that you choose this. This will allow you to remotely access your computer from other machines, either on the local network or on the Internet. We will explain this in the <a href="6-ssh">next chapter, 3.6</a>.
  2.  DNS Server: This is only necessary if you are going to use your server as a network controller and router. We go over this in <a href="7-net">chapter 3.7</a>.
  3.  <strong>LAMP Server</strong>: This will install Apache (web server), MySQL (content publishing platforms like Wordpress or Drupal), and PHP (necessary for almost any website application). We will review these in <a href="9-web">chapter 3.9</a>.
@@ -40,7 +40,7 @@ Next, you will set up a base user and choose its password, as well as setting th
 
 <p>And with that, your computer will reboot, and you will be prevented with your shiny-new login prompt:</p>
 
-<p><img src="../img/3-5-5.png" alt="" /> 
+<p><img src="../img/3-5-5.jpg" alt="" /> 
 This base system works according to the Linux command-line rules that were explained in section 2. It has no graphical user interface. The goal of this guide is to get you up-to-speed and comfortable with editing the features of your system without needing to rely on graphical interfaces.</p>
 
 <h2>3.5.3 - Basic Network Setup</h2>

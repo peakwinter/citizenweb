@@ -82,7 +82,7 @@ For the Windows partition, just leave some "free space" that matches the size of
 Keep in mind that Windows requires a lot more space to operate than Linux does. For Windows you should look to set aside (at a bare minimum) 50GB of space for the operating system and some application suites.
 
  [1]: http://www.ubuntu.com/
- [2]: ../img/2-2-1.png
- [3]: ../img/2-2-2.png
- [4]: ../img/2-2-3.png
- [5]: ../img/2-2-4.png
+ [2]: ../img/2-2-1.jpg
+ [3]: ../img/2-2-2.jpg
+ [4]: ../img/2-2-3.jpg
+ [5]: ../img/2-2-4.jpg

@@ -171,9 +171,9 @@ Also, don't forget to enable the Apache ssl module by running:
 Once this is done, enable any new VirtualHost files you created via `sudo a2ensite $name-ssl` and reload your configuration with `sudo service apache2 reload`. Fire up your browser of choice and head to https://mydomain.com and enjoy your encrypted connection!
 
 
- [1]: ../img/3-9-1.png
+ [1]: ../img/3-9-1.jpg
  [2]: https://httpd.apache.org/docs/2.2/vhosts/examples.html
- [3]: ../img/3-9-2.png
+ [3]: ../img/3-9-2.jpg
  [4]: https://wordpress.org/latest.zip
  [5]: https://wordpress.org/
  [6]: https://namecheap.com

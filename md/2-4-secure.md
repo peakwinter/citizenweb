@@ -155,13 +155,13 @@ Here you can choose a set of options based on how you want the plugin to behave.
 
  [1]: https://www.eff.org/https-everywhere
  [2]: https://chrome.google.com/webstore/category/extensions
- [3]: ../img/2-4-1.png
+ [3]: ../img/2-4-1.jpg
  [4]: https://www.torproject.org
  [5]: https://www.torproject.org/projects/torbrowser.html.en
  [6]: https://www.torproject.org/download/download-easy.html.en#warning
- [7]: ../img/2-4-2.png
+ [7]: ../img/2-4-2.jpg
  [8]: http://www.cypherpunks.ca/otr/index.php#downloads
- [9]: ../img/2-4-3.png
+ [9]: ../img/2-4-3.jpg
  [10]: http://download.chip.eu/en/how_to/Protect-Your-Privacy-with-Ghostery_144165304.html
  [11]: https://www.torproject.org/docs/tor-doc-unix.html.en
  [12]: http://www.enigmail.net/documentation/quickstart.php
