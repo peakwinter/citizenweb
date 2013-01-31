@@ -1,4 +1,4 @@
-## 3.5.1 - Download Ubuntu Server
+## 3.4.1 - Download Ubuntu Server
 
 Downloading Ubuntu Server is a snap: you merely have to choose the version that is right for you. There are usually two different versions available at any given moment: the most up-to-date version (currently 12.10) or the current Long-Term Support (LTS) version, which is presently 12.04.1. It is usually a good idea to stick with the LTS version, as long as it is recent. This guarantees that you will be able to get support through Canonical (Ubuntu) for the forseeable future, should you have a problem with the specific version you are using. Though this means you will not get the latest and greatest updates from Ubuntu, on server distributions this is usually not a problem.
 
@@ -7,7 +7,7 @@ Head to [Ubuntu Server's download page][1] and select the version that works bes
 It is also possible to install Ubuntu via [USB drive][2].
 
   
-## 3.5.2 - Installing Ubuntu Server
+## 3.4.2 - Installing Ubuntu Server
 
 Installing Ubuntu Server is just as easy as installing Ubuntu's desktop version, but there are (of course) different options you will need to configure. Also, the installer is only available in a text-based menu format. You will be able to use the SPACE key to mark selected option buttons or checkboxes, and TAB to move between fields, just like in any other graphical application.
 
@@ -29,15 +29,15 @@ Next, you will set up a base user and choose its password, as well as setting th
 Finally, you will be asked which software packages should be installed by default:
 
 ![][6] 
-1.  **OpenSSH Server**: It is highly recommended that you choose this. This will allow you to remotely access your computer from other machines, either on the local network or on the Internet. We will explain this in the [next chapter, 3.6][7].
-2.  **DNS Server**: This is only necessary if you are going to use your server as a network controller and router. We go over this in [chapter 3.7][8].
-3.  **LAMP Server**: This will install Apache (web server), MySQL (content publishing platforms like Wordpress or Drupal), and PHP (necessary for almost any website application). We will review these in [chapter 3.9][9].
-4.  **Mail Server**: Installs Postfix and Dovecot for mail storage and transmission. We go over these in [chapter 3.8][10].
+1.  **OpenSSH Server**: It is highly recommended that you choose this. This will allow you to remotely access your computer from other machines, either on the local network or on the Internet. We will explain this in the [next chapter, 3.5][7].
+2.  **DNS Server**: This is only necessary if you are going to use your server as a network controller and router. We go over this in [chapter 3.6][8].
+3.  **LAMP Server**: This will install Apache (web server), MySQL (content publishing platforms like Wordpress or Drupal), and PHP (necessary for almost any website application). We will review these in [chapter 3.8][9].
+4.  **Mail Server**: Installs Postfix and Dovecot for mail storage and transmission. We go over these in [chapter 3.7][10].
 5.  **PostgreSQL Database**: This is another type of SQL server. You should only choose to install it if the program you want to run explicitly requires it.
 6.  **Print Server**: Use this if you will be connecting a printer to this computer and would like to share it on your network for other devices to use.
-7.  **Samba File Server**: Use this if you have Windows/Apple devices on your network that you will want to share files or media with. We will go over this in [chapter 3.12][11].
+7.  **Samba File Server**: Use this if you have Windows/Apple devices on your network that you will want to share files or media with. We will go over this in [chapter 3.11][11].
 8.  **Tomcat Java Server**: This is for Java software hosting and development, you will not need it unless you are a Java developer.
-9.  **Virtual Machine Host**: Use this if you will be running virtual machines (VMs) with this server for various reasons. VMs will be explained in the [appendix chapter 3.13][12].</strong>
+9.  **Virtual Machine Host**: Use this if you will be running virtual machines (VMs) with this server for various reasons. VMs will be explained in the [appendix chapter 3.12][12].</strong>
 
 And with that, your computer will reboot, and you will be prevented with your shiny-new login prompt:
 
@@ -45,7 +45,7 @@ And with that, your computer will reboot, and you will be prevented with your sh
 This base system works according to the Linux command-line rules that were explained in section 2. It has no graphical user interface. The goal of this guide is to get you up-to-speed and comfortable with editing the features of your system without needing to rely on graphical interfaces.
 
   
-## 3.5.3 - Basic Network Setup
+## 3.4.3 - Basic Network Setup
 
 At this point we will set up our server so that it has basic connectivity to the Internet. From there, we will be able to set up applications based on our individual preferences in the following chapters. Below we will explain how to set up your server to communicate with the Internet on one port, and with an internal network on the other. We will assume that "eth0" corresponds to the port connected to our internal network hub or access point, and "eth1" corresponds to the port directly connected to our DSL/satellite/cable modem.
 
@@ -81,24 +81,24 @@ After setting these items, you will need to toggle the interface before the new 
 If your internet-facing ethernet port is connecting to a DSL modem, check to see if you connect to your DSL server via PPPoE. If this is the case, you will need to set up this ethernet port to connect to your modem via PPPoE. Follow the modem's manual or online support page to set it in "bridge" mode, then follow the [Ubuntu PPPoE guide][15] to set up the connection on your internet-facing ethernet port.
 
   
-## 3.5.4 - Further Reading
+## 3.4.4 - Further Reading
 
 *   [Ubuntu Installation Guide][16]
 *   [Ubuntu Server Guide - Network Configuration][17]
 
  [1]: http://www.ubuntu.com/download/server
  [2]: https://help.ubuntu.com/community/Installation/FromUSBStick
- [3]: ../img/3-5-1.jpg
- [4]: ../img/3-5-2.jpg
- [5]: ../img/3-5-3.jpg
- [6]: ../img/3-5-4.jpg
- [7]: 6-ssh
- [8]: 7-net
- [9]: 9-web
- [10]: 8-email
- [11]: 12-media
- [12]: 13-vms
- [13]: ../img/3-5-5.jpg
+ [3]: ../img/3-4-1.jpg
+ [4]: ../img/3-4-2.jpg
+ [5]: ../img/3-4-3.jpg
+ [6]: ../img/3-4-4.jpg
+ [7]: 5-ssh
+ [8]: 6-net
+ [9]: 8-web
+ [10]: 7-email
+ [11]: 11-media
+ [12]: 12-vms
+ [13]: ../img/3-4-5.jpg
  [14]: http://www.subnet-calculator.com/
  [15]: https://help.ubuntu.com/community/ADSLPPPoE
  [16]: https://help.ubuntu.com/12.04/installation-guide/

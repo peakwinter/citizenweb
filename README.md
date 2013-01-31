@@ -39,20 +39,19 @@ If you're still not convinced why all of this is important, or if you aren't eve
 	4. Securing your Mail, Internet and Chat Applications
 	5. APPENDIX: Popular Software & Open File Formats
 3. Setting Up Your Personal Server
-	1. Quick Start Guide
-	2. Why a Personal Server?
-	3. Before You Begin: Options, Configuration and Hardware
-	4. Assembling Your Server/PC
-	5. Installing and Configuring Ubuntu Server
-	6. Getting In: Project to SSH and VNC
-	7. Networking: Setting up DHCP, DNS and NAT Forwarding
-	8. Email: Setting up Postfix and Dovecot
-	9. Website Hosting: Setting up Apache Server
-	10. Cloud Services: Setting up ownCloud
-	11. Security: Firewalling and Threat Detection
-	12. Managing and Streaming Your Media
-	13. APPENDIX: Guide to Virtual Machines
-	14. APPENDIX: Guide to FreeNAS
+	1. Why a Personal Server?
+	2. Before You Begin: Options, Configuration and Hardware
+	3. Assembling Your Server/PC
+	4. Installing and Configuring Ubuntu Server
+	5. Getting In: Project to SSH and VNC
+	6. Networking: Setting up DHCP, DNS and NAT Forwarding
+	7. Email: Setting up Postfix and Dovecot
+	8. Website Hosting: Setting up Apache Server
+	9. Cloud Services: Setting up ownCloud
+	10. Security: Firewalling and Threat Detection
+	11. Managing and Streaming Your Media
+	12. APPENDIX: Guide to Virtual Machines
+	13. APPENDIX: Guide to FreeNAS
 4. Crash Courses
 	1. Backup Your Data
 

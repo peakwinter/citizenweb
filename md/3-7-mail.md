@@ -3,7 +3,7 @@ There are two components to the mail system we are going to build. The first com
 The Mail Delivery Agent (MDA) is the second part of the mail system. Our MDA is called **dovecot**. The MDA handles the storage and organization of your mail once it is received. It may help to think of it as such: your MTA is your postman, going from house to house and delivering the mail; the MDA is your mailbox itself.
 
   
-## 3.8.1 - First Steps: Install Postfix
+## 3.7.1 - First Steps: Install Postfix
 
 We will begin with installing our MTA, Postfix.
 
@@ -65,7 +65,7 @@ Now let's see if it worked. Run the `mail` command and you should see the subjec
 
 In most cases, mail clients will send their outgoing mail on port 25. This is the port that mail servers communicate between each other with to transfer mail. However, many mail clients are set up by default to use port 587 to send mail over Secure (TLS) SMTP. If you'd like, you can also enable this port in Dovecot by editing `/etc/postfix/master.cf` and uncommenting the line that starts with "submission." To require logins over TLS for this port, uncomment the "-o smtpd\_recipient\_restrictions" section underneath "submission" and add reject\_sender\_login_mismatch to the list.
   
-## 3.8.2 - Setting Up Mail Storage with Dovecot
+## 3.7.2 - Setting Up Mail Storage with Dovecot
 This guide assumes that you want to run a mailserver for personal use only. It will therefore base your mail account off of your login account. If you are planning on running a server for others as well, it would be a good idea to set up virtual users, instead of setting up multiple users on your computer itself and potentially compromising it. To enable virtual users, follow the steps outlined in this guide, then add the steps found [here][1].
 
 On Ubuntu Server, there are two flavours of dovecot: `dovecot-imapd` and `dovecot-pop3d` You can install either or both if you'd like. Though the one you choose will depend on which email protocol you would like to use for remote connections. POP is the older protocol, which operates by downloading all email on a remote server to local folders and organizing them by their type. POP then deletes the original messages from your server, leaving you with the copies and folder organization on your local computer only.
@@ -103,7 +103,7 @@ Once this is complete, we are ready to start and test Dovecot. Start it with `su
 ... then we are ready to go to the next step!
 
   
-## 3.8.3 - Securing Your Mail System
+## 3.7.3 - Securing Your Mail System
 
 The importance of running a safe and secure mail system cannot be overstated. For one, you certainly don't want your system to be used to forward spam off across the internet. If your system allows spam to be relayed then it can even find its way onto a blacklist, meaning some providers can refuse mail from your email accounts! And we certainly don't want that. So it is very important that we secure our mail system. To do this, we will enact the following policies:
 
@@ -150,7 +150,7 @@ If you are planning on running an email system for multiple people, it may be a 
 With this, Dovecot will require its clients to authenticate themselves securely. You can now test your system by opening up your mail client of choice and adding your mail account. Enter the username and password of your user account on the server that you want to use. Set mail.*mydomain.com* as both your incoming (IMAP) and outgoing (SMTP) mail server. Make sure IMAP is using port 143, and SMTP is using port 25 or 587, whichever you chose in the Postfix configuration.
 
   
-## 3.8.4 - Further Reading
+## 3.7.4 - Further Reading
 
 *   [Postfix Documentation][3]
 *   [Dovecot Wiki][4]

@@ -1,4 +1,4 @@
-## 3.10.1 - What is ownCloud?
+## 3.9.1 - What is ownCloud?
 
 ownCloud is a framework for personal cloud services that you can run on any server, for work or personal use. In plain English, it gives you many of the same services that platforms like Google can provide for you on a daily basis. But, as with everything else in this guide, you get the benefit of assuring your own data and full ownership as well.
 
@@ -19,11 +19,11 @@ ownCloud has many features, as well as a plugin system that allows even more to 
 ![][1]
 
 
-## 3.10.2 - Installing ownCloud
+## 3.9.2 - Installing ownCloud
 
 Download the latest ownCloud source from its [website here][2]. Make sure you choose the most recent branch of code available - at the time of writing that is 4.5.
 
-Note that you will need to have Apache installed and configured properly to use ownCloud. Don't skip that guide! We cover Apache installation in guide 3.9.
+Note that you will need to have Apache installed and configured properly to use ownCloud. Don't skip that guide! We cover Apache installation in guide 3.8.
 
 Extract the package to the path of your choice. If this is the only web service you will use on your server, that path would be `/var/www/`; otherwise, you should extract it to `/usr/share/`.
 
@@ -68,7 +68,7 @@ Save these and activate them in Apache, then we are ready to go!
 	sudo a2ensite {owncloud,owncloud-ssl}
 	sudo service apache2 reload
 
-Open up your browser and navigate to the server name that you set up earlier. You will be guided through an installation wizard that will set up a database and administrative user. For more information about this, refer to guide chapter 3.9.
+Open up your browser and navigate to the server name that you set up earlier. You will be guided through an installation wizard that will set up a database and administrative user. For more information about this, refer to guide chapter 3.8.
 
 ![][3]
 
@@ -79,7 +79,7 @@ Once ownCloud is properly set up, you will see its main screen which is easily i
 And that's it! You can use its intuitive interface to store and share your files, set up calendar appointments, and organize the media. Have fun with your own personal cloud!
 
 
-## 3.10.3 - Setting up Contacts, Calendar and File Sync
+## 3.9.3 - Setting up Contacts, Calendar and File Sync
 
 As the contacts and calendar features of ownCloud are so helpful, this guide will also explain how to synchronize them with your personal devices.
 
@@ -118,14 +118,14 @@ For contact sync, download [CardDAV Sync][7] from the Play Store. From here, you
 For file synchronization, there is the [ownCloud app][9] that will enable cloud sync between your phone and your ownCloud server. Or, you can use any "cloud sync" app on the Android that supports the WebDAV format. Just go into ownCloud, click Settings > Personal, then copy the WebDAV link into the application.
 
 
-## 3.10.4 - Further Reading
+## 3.9.4 - Further Reading
 
 * [ownCloud Documentation Centre][10]
 
- [1]: ../img/3-10-1.jpg
+ [1]: ../img/3-9-1.jpg
  [2]: http://owncloud.org/support/install/
- [3]: ../img/3-10-2.jpg
- [4]: ../img/3-10-3.jpg
+ [3]: ../img/3-9-2.jpg
+ [4]: ../img/3-9-3.jpg
  [5]: http://www.sogo.nu/fr/downloads/frontends.html
  [6]: http://owncloud.org/sync-clients/
  [7]: https://play.google.com/store/apps/details?id=org.dmfs.carddav.Sync&feature=nav_other#?t=W251bGwsMSwxLDYsIm9yZy5kbWZzLmNhcmRkYXYuU3luYyJd

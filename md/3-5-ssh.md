@@ -82,7 +82,7 @@ On your local machine you will need a VNC viewer. Ubuntu has one built-in named 
 
 `vinagre 192.168.0.1`
 
-When it comes to securing your VNC connection, the best way to do that is to run VNC over an SSH tunnel and block the VNC port (5900) on your firewall. We will discuss port blocking and SSH tunnelling in the chapter on network security.
+When it comes to securing your VNC connection, the best way to do that is to run VNC over an SSH tunnel and block the VNC port (5900) on your firewall. We will discuss port blocking and SSH tunnelling in chapter 3.10.
 
   
 ## 3.5.4 - Further Reading

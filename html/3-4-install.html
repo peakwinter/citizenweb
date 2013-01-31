@@ -1,4 +1,4 @@
-<h2>3.5.1 - Download Ubuntu Server</h2>
+<h2>3.4.1 - Download Ubuntu Server</h2>
 
 <p>Downloading Ubuntu Server is a snap: you merely have to choose the version that is right for you. There are usually two different versions available at any given moment: the most up-to-date version (currently 12.10) or the current Long-Term Support (LTS) version, which is presently 12.04.1. It is usually a good idea to stick with the LTS version, as long as it is recent. This guarantees that you will be able to get support through Canonical (Ubuntu) for the forseeable future, should you have a problem with the specific version you are using. Though this means you will not get the latest and greatest updates from Ubuntu, on server distributions this is usually not a problem.</p>
 
@@ -6,44 +6,44 @@
 
 <p>It is also possible to install Ubuntu via <a href="https://help.ubuntu.com/community/Installation/FromUSBStick">USB drive</a>.</p>
 
-<h2>3.5.2 - Installing Ubuntu Server</h2>
+<h2>3.4.2 - Installing Ubuntu Server</h2>
 
 <p>Installing Ubuntu Server is just as easy as installing Ubuntu's desktop version, but there are (of course) different options you will need to configure. Also, the installer is only available in a text-based menu format. You will be able to use the SPACE key to mark selected option buttons or checkboxes, and TAB to move between fields, just like in any other graphical application.</p>
 
 <p>Load your install CD into your server, and boot it up, after having made sure that your CD/DVD drive is higher in the boot order list. Choose your language and the obvious options from the screen that comes up. It will ask you more questions based on your language, locale and other preferences. </p>
 
-<p><img src="../img/3-5-1.jpg" alt="" /> 
+<p><img src="../img/3-4-1.jpg" alt="" /> 
 After this it will attempt to detect your hardware settings and will ask you if you wish to use DHCP. If your server is connected to a network that has a router, choose to use DHCP for now. If not, choose "Configure the network manually" and you will have the option to set your desired static IP, subnet and gateway settings. After the install, we will walk through specific network settings to enable based on your configuration.</p>
 
 <p>Set the hostname and timezone information as per your preferences. Next the installer will take you to the disk configuration menu.</p>
 
-<p><img src="../img/3-5-2.jpg" alt="" /> 
+<p><img src="../img/3-4-2.jpg" alt="" /> 
 You will most likely want to choose "Guided - use entire disk". If this system will be running virtual machines or will share disk space with other operating systems, choose "Manual" and create a partition for "/" that reflects the size you want your server storage to have.</p>
 
 <p>After this, your base system will be installed:</p>
 
-<p><img src="../img/3-5-3.jpg" alt="" /> 
+<p><img src="../img/3-4-3.jpg" alt="" /> 
 Next, you will set up a base user and choose its password, as well as setting the administrative password for the root user; then you will be asked if you want to encrypt the Home directory on the server. Unless you have extremely sensitive security concerns, I would not bother with encrypting the home directory on a server. We will be encrypting our backed-up data before we place it on the server anyway. Then you will be asked to choose how you want to receive your updates: either manually or automatically. Choose based on your preference. It is often convenient to have your server automatically receive security updates, so you don't need to worry about it.</p>
 
 <p>Finally, you will be asked which software packages should be installed by default:</p>
 
-<p><img src="../img/3-5-4.jpg" alt="" /> 
- 1.  <strong>OpenSSH Server</strong>: It is highly recommended that you choose this. This will allow you to remotely access your computer from other machines, either on the local network or on the Internet. We will explain this in the <a href="6-ssh">next chapter, 3.6</a>.
- 2.  DNS Server: This is only necessary if you are going to use your server as a network controller and router. We go over this in <a href="7-net">chapter 3.7</a>.
- 3.  <strong>LAMP Server</strong>: This will install Apache (web server), MySQL (content publishing platforms like Wordpress or Drupal), and PHP (necessary for almost any website application). We will review these in <a href="9-web">chapter 3.9</a>.
- 4.  <strong>Mail Server</strong>: Installs Postfix and Dovecot for mail storage and transmission. We go over these in <a href="8-email">chapter 3.8</a>.
+<p><img src="../img/3-4-4.jpg" alt="" /> 
+ 1.  <strong>OpenSSH Server</strong>: It is highly recommended that you choose this. This will allow you to remotely access your computer from other machines, either on the local network or on the Internet. We will explain this in the <a href="5-ssh">next chapter, 3.5</a>.
+ 2.  DNS Server: This is only necessary if you are going to use your server as a network controller and router. We go over this in <a href="6-net">chapter 3.6</a>.
+ 3.  <strong>LAMP Server</strong>: This will install Apache (web server), MySQL (content publishing platforms like Wordpress or Drupal), and PHP (necessary for almost any website application). We will review these in <a href="8-web">chapter 3.8</a>.
+ 4.  <strong>Mail Server</strong>: Installs Postfix and Dovecot for mail storage and transmission. We go over these in <a href="7-email">chapter 3.7</a>.
  5.  <strong>PostgreSQL Database</strong>: This is another type of SQL server. You should only choose to install it if the program you want to run explicitly requires it.
  6.  <strong>Print Server</strong>: Use this if you will be connecting a printer to this computer and would like to share it on your network for other devices to use.
- 7.  <strong>Samba File Server</strong>: Use this if you have Windows/Apple devices on your network that you will want to share files or media with. We will go over this in <a href="12-media">chapter 3.12</a>.
+ 7.  <strong>Samba File Server</strong>: Use this if you have Windows/Apple devices on your network that you will want to share files or media with. We will go over this in <a href="11-media">chapter 3.11</a>.
  8.  <strong>Tomcat Java Server</strong>: This is for Java software hosting and development, you will not need it unless you are a Java developer.
- 9.  <strong>Virtual Machine Host</strong>: Use this if you will be running virtual machines (VMs) with this server for various reasons. VMs will be explained in the <a href="13-vms">appendix chapter 3.13</a>.</strong></p>
+ 9.  <strong>Virtual Machine Host</strong>: Use this if you will be running virtual machines (VMs) with this server for various reasons. VMs will be explained in the <a href="12-vms">appendix chapter 3.12</a>.</strong></p>
 
 <p>And with that, your computer will reboot, and you will be prevented with your shiny-new login prompt:</p>
 
-<p><img src="../img/3-5-5.jpg" alt="" /> 
+<p><img src="../img/3-4-5.jpg" alt="" /> 
 This base system works according to the Linux command-line rules that were explained in section 2. It has no graphical user interface. The goal of this guide is to get you up-to-speed and comfortable with editing the features of your system without needing to rely on graphical interfaces.</p>
 
-<h2>3.5.3 - Basic Network Setup</h2>
+<h2>3.4.3 - Basic Network Setup</h2>
 
 <p>At this point we will set up our server so that it has basic connectivity to the Internet. From there, we will be able to set up applications based on our individual preferences in the following chapters. Below we will explain how to set up your server to communicate with the Internet on one port, and with an internal network on the other. We will assume that "eth0" corresponds to the port connected to our internal network hub or access point, and "eth1" corresponds to the port directly connected to our DSL/satellite/cable modem.</p>
 
@@ -78,7 +78,7 @@ The "address" field will match the external static IP address provided by your i
 
 <p>If your internet-facing ethernet port is connecting to a DSL modem, check to see if you connect to your DSL server via PPPoE. If this is the case, you will need to set up this ethernet port to connect to your modem via PPPoE. Follow the modem's manual or online support page to set it in "bridge" mode, then follow the <a href="https://help.ubuntu.com/community/ADSLPPPoE">Ubuntu PPPoE guide</a> to set up the connection on your internet-facing ethernet port.</p>
 
-<h2>3.5.4 - Further Reading</h2>
+<h2>3.4.4 - Further Reading</h2>
 
 <ul>
 <li><a href="https://help.ubuntu.com/12.04/installation-guide/">Ubuntu Installation Guide</a></li>

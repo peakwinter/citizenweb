@@ -1,4 +1,4 @@
-<h2>3.13.1 – What are Virtual Machines?</h2>
+<h2>3.12.1 – What are Virtual Machines?</h2>
 
 <p>A virtual machine is a simulation of an operating system that can run within a different operating environment. Rather than only booting an operating system natively, like we do every time we start up our computers, virtual machines make it possible to run different operating systems and supported applications natively from your computer.</p>
 
@@ -13,7 +13,7 @@
 
 <p>In order to use a virtual machine, your computer or server must have adequate processing power. It is advised that your computer have a 64-bit processor, with at least two cores. Intel processors can feature VT-x technology, which is highly recommended for running virtual machines.</p>
 
-<h2>3.13.2 – Install VirtualBox and Set Up a VM</h2>
+<h2>3.12.2 – Install VirtualBox and Set Up a VM</h2>
 
 <p>These instructions are for Oracle VirtualBox, an application that manages and runs virtual machines. It will show how to run VirtualBox via command-line (for Ubuntu Server) and graphical interface.</p>
 
@@ -25,7 +25,7 @@
 
 <p>Go to the sidebar and launch VirtualBox from the Search menu. You are presented with the main screen.</p>
 
-<p><img src="../img/3-13-1.jpg" alt="" /></p>
+<p><img src="../img/3-12-1.jpg" alt="" /></p>
 
 <p>From here, you can see a list of your virtual machines in the left-hand side bar, as well as the controls for your VMs right above that.</p>
 
@@ -35,7 +35,7 @@
 
 <p>The next screen will allow you to choose the memory size of your virtual machine. For most Linux-based VMs, 512MB will suffice. For Windows-based VMs it may be a good idea to use 1024MB. This will of course depend on how much RAM your system has to begin with.</p>
 
-<p><img src="../img/3-13-2.jpg" alt="" /></p>
+<p><img src="../img/3-12-2.jpg" alt="" /></p>
 
 <p>Now you can set the virtual hard drive space that your virtual machine will run from. This will create a file that acts as a container for everything held in your virtual machine. Click "Create" and choose "VDI (VirtualBox Disk Image)." The next screen will allow you to choose a dynamically-allocated image or a fixed-size image. Dynamically-allocated images are a good option, because you can set a maximum theoretical size for the image without actually taking up all of that disk space until your VM actually does so. If you choose fixed-size, a 50GB disk image (for example) would instantly take up 50GB of space on your disk, regardless if the VM is actually using that much space or not.</p>
 
@@ -43,7 +43,7 @@
 
 <p>Once you click "Create," your new VM will show up in the list. When you are ready, click "Start" above the list to begin the process of installing your operating system. A screen will come up that will allow you to choose an installation source.</p>
 
-<p><img src="../img/3-13-3.jpg" alt="" /></p>
+<p><img src="../img/3-12-3.jpg" alt="" /></p>
 
 <p>From here, you can choose either your CD drive (if you have your OS' installation disc loaded), or an ISO file to install from a downloaded install image. Then you can follow the normal installation process for your chosen operating system.</p>
 
@@ -81,7 +81,7 @@
 
 <p>When you are done using your virtual machine, you should shut down the operating system it is running, just like you would a normal computer. If you need to kill it without a normal shutdown, run <code>VBoxManage controlvm "Ubuntu 11.04 Server" poweroff</code>.</p>
 
-<h2>3.13.3 - Further Reading</h2>
+<h2>3.12.3 - Further Reading</h2>
 
 <ul>
 <li><a href="https://www.virtualbox.org/manual/ch07.html">VirtualBox - Remote Virtual Machines</a></li>

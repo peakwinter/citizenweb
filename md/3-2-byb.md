@@ -1,4 +1,4 @@
-## 3.3.1 - List Your Options
+## 3.2.1 - List Your Options
 
 What do you want your server to do? What will it be handling for you on a daily basis? These are important questions to answer before shopping for your server hardware.
 
@@ -13,7 +13,7 @@ What do you want your server to do? What will it be handling for you on a daily 
 **Network-routed and firewalled**
 
   
-## 3.3.2 - Buy Hardware
+## 3.2.2 - Buy Hardware
 
 Now we get to the fun part - doing some shopping! Load up your favourite computer parts vendor and let's get started.
 
@@ -69,7 +69,7 @@ Other things you will need to consider:
 *   Monitor: *Remember that this is optional if you are going to run a headless server, but you will at least need access to one temporarily when you install your distribution.*
 
   
-## 3.3.3 - ISP and Domain Name Options
+## 3.2.3 - ISP and Domain Name Options
 
 If you are not planning to use your server to host any external (Internet) service, OR you have opted to use a Virtual Private Server (VPS), you can skip this section.
 
@@ -91,8 +91,8 @@ With the static IP in hand and the domain name registered, it's time to get them
 
 With the correct settings enabled, and the Internet ready to welcome our server, let's start assembling the computer itself.
 
- [1]: ../img/3-3-1.jpg
- [2]: ../img/3-3-2.jpg
+ [1]: ../img/3-2-1.jpg
+ [2]: ../img/3-2-2.jpg
  [3]: http://www.newegg.com
  [4]: http://www.tigerdirect.com
  [5]: http://www.misco.co.uk

@@ -1,6 +1,6 @@
 For those who will be using their servers to manage their network (including as a firewall), we will now be setting up various services allowing our internal network to use the Internet and various other services hosted by our server.
 
-## 3.7.1 - Serve Network Clients via DHCP
+## 3.6.1 - Serve Network Clients via DHCP
 
 First, install the DHCP server from the Ubuntu package repositories.
 
@@ -40,7 +40,7 @@ Now let's walk through these lines and figure out what each of them does.
 Once your configuration is in order, start the server with `sudo service isc-dhcp-server restart`. Your devices will now be able to communicate with each other on your network. But don't get too excited yet! They still won't be able to get internet access. For this, we will need to set up a gateway and NAT forwarding with iptables, then we will set our server to handle DNS requests.
 
   
-## 3.7.2 - Give Clients Internet Access with iptables
+## 3.6.2 - Give Clients Internet Access with iptables
 
 The next step is to enable your server as an Internet gateway, so that it will share its connection to devices connected to the internal network. To do this, we will be using the iptables firewall system.
 
@@ -59,10 +59,10 @@ Set your iptables configuration to load at boot by editing `/etc/rc.local` and a
 
 Finally, edit `/etc/sysctl.conf` and uncomment the line that reads `net.ipv4.ip_forward=1`.
 
-And with that, our iptables configuration should be working. We will work more with iptables in the chapter on firewalling and security. At this point your devices should now be able to ping IP addresses that are on the internet, and view internet sites via IP addresses. But the final piece of the puzzle comes in handling DNS requests.
+And with that, our iptables configuration should be working. We will work more with iptables in the chapter on firewalling and security, 3.10. At this point your devices should now be able to ping IP addresses that are on the internet, and view internet sites via IP addresses. But the final piece of the puzzle comes in handling DNS requests.
 
   
-## 3.7.3 - Set Up a Local DNS Server
+## 3.6.3 - Set Up a Local DNS Server
 
 In brief, DNS is the method that the Internet uses to translate IP addresses to the domain names we are all used to typing in our browsers. We know that every internet server has at least one IP address, and this is how it can be "found" online. And DNS is what is used to give these addresses a human-readable name.
 
@@ -153,7 +153,7 @@ To activate these zonefiles for use in BIND, edit `/etc/bind/named.conf.local` a
 Start up bind with `sudo service bind9 restart`. At this point, your clients should be able to connect to the Internet using regular ol' domain names like usual. Hooray!
 
   
-## 3.7.4 - Allow DHCP to Update DNS Entries
+## 3.6.4 - Allow DHCP to Update DNS Entries
 
 Now we can not only use the Internet on our internal network, we can also communicate with our static servers/hosts using their proper names. But what if you want to reach other devices by their hostnames? Say you have a friend come over that's bringing his laptop, and you want to set up a fileshare on it and to reach that share via his laptop's hostname. For that, we can allow our DHCP server to fetch these names and update our network's DNS records accordingly. This is done by providing a secure socket for the DNS and DHCP servers to communicate on.
 
@@ -216,7 +216,7 @@ Don't forget to remove the key file that we created, `Kdhcp_updater.*`.
 
 From now on, if you want to make manual changes to your BIND DNS zonefiles, you will need to "freeze" them first. Freeze it with `sudo rndc freeze home.local.` and then you are free to make your edits. Once completed, "thaw" the zonefile again by running `sudo rndc unfreeze home.local.` And of course, don't forget the "." at the end!
   
-## 3.7.5 - Further Reading
+## 3.6.5 - Further Reading
 
 *   [DHCP (Ubuntu Documentation)][1]
 *   [BIND Configuration (Ubuntu Documentation)][2]

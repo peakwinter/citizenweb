@@ -1,4 +1,4 @@
-<h2>3.11.1 - ufw, the Uncomplicated Firewall</h2>
+<h2>3.10.1 - ufw, the Uncomplicated Firewall</h2>
 
 <p>One of Linux's most commonly used firewall systems is <code>iptables</code>. Iptables is an extremely customizable and extensible firewalling solution, however it is very complicated to set up and maintain on its own. Luckily we have <code>ufw</code>. ufw operates by establishing certain rules in its own front end, then translating those rules into the many lines that iptables can understand and execute.</p>
 
@@ -16,7 +16,7 @@
 
 <p>Now it will be up to us to set specific rules (and open ports) based on the apps/servers we are running. This goes for anything operating off of this server or any other client on the internal network that requires open ports.</p>
 
-<h2>3.11.2 - Setting ufw Rules</h2>
+<h2>3.10.2 - Setting ufw Rules</h2>
 
 <p>To allow traffic through our firewall, we will need to allow ports through it. We can do that with:</p>
 
@@ -48,7 +48,7 @@
 <li><strong>Media Streaming</strong>: port 3689 for DAAP (Apple/iTunes), ports 1900 and 5000 for uPnP</li>
 </ul>
 
-<h2>3.11.3 - SSH Tunnelling: Maintain Secure Access through a Closed Firewall</h2>
+<h2>3.10.3 - SSH Tunnelling: Maintain Secure Access through a Closed Firewall</h2>
 
 <p>For applications you don't want to allow through to the Internet (if you think you are going to rarely use them away from home, or if you have significant security concerns), but you still might want to use them someday, it's good practice to use them over an SSH tunnel. You can create SSH tunnels with the following format, replacing the values where necessary:</p>
 
@@ -60,7 +60,7 @@
 
 <p>... this will create an SSH tunnel for Minecraft on my computer. Simply connect Minecraft to a server located at localhost:9876 and you can use it via a remote connection, as if you were just connected to the local network.</p>
 
-<h3>3.11.4 - Setting up fail2ban</h3>
+<h3>3.10.4 - Setting up fail2ban</h3>
 
 <p>Our firewall is in place, which will go a long way to helping secure our system from most attack attempts. However we will go a step further by using <code>fail2ban</code>. Fail2ban monitors the logs of network-capable applications for entry attempts and repeated failures, and promptly bans the associated IP addresses for a determined amount of time. This can help dissuade and eliminate the threat posed by certain bots that like to roam the internet, testing many different attack strategies at once to try and find one that sticks. It also helps stop some DDoS attempts, which are commonly used to bring down websites and other services.</p>
 
@@ -90,7 +90,7 @@
 
 <p>With some services, errors can come up innocently yet frequently. If you create a broken link to a PHP page on your website, for example, and you have the apache-php jail enabled, you might be sending people to an error screen that can ban them if they try to refresh it too much. Keep this in mind when enabling jails AND when choosing a ban time. </p>
 
-<h2>3.11.5 - More Security Tips</h2>
+<h2>3.10.5 - More Security Tips</h2>
 
 <ul>
 <li><strong>SSH</strong>: Make sure you've disabled root logins as well as password logins for SSH, and are only using key-based logins if at all possible. Remember to keep your keys safe on your devices!</li>
@@ -103,7 +103,7 @@
 
 <p>Instructions for how to enable these tips can be found in their respective sections of this guide.</p>
 
-<h2>3.11.6 - Further Reading</h2>
+<h2>3.10.6 - Further Reading</h2>
 
 <ul>
 <li><a href="http://ubuntuforums.org/showthread.php?t=823741">UFW Questions and Answers - Ubuntu Forums</a></li>

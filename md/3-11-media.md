@@ -1,4 +1,4 @@
-## 3.12.1 - Setup File Shares via Samba and NFS
+## 3.11.1 - Setup File Shares via Samba and NFS
 
 The first step to setting up a file server, whether its for your local network or for remote access, is to decide upon a method for sharing that works with your desired configuration. This guide will explain three different systems, each easy to set up but used for different purposes. You can set up all three, or any combination thereof.
 
@@ -54,7 +54,7 @@ To connect to these systems from your Linux computer, go to the Terminal and run
 Much like Samba, you shouldn't open your NFS server to the world. For sharing with others, use FTP or a separately-installed service like ownCloud. Use a firewall like ufw to block the NFS ports externally, or to only allow it on your local network. NFS uses port 2049 for its connections.
 
 
-## 3.12.2 - Stream Music/Photos/Video via uPnP
+## 3.11.2 - Stream Music/Photos/Video via uPnP
 
 Once we have our file servers set up, that's all well and good, but it does not let us seamlessly stream our content. That is one of the great benefits of having a server act as a NAS (network attached storage) device: being able to stream your media from various devices around your home. uPnP is one of the mechanisms that can be used to achieve this. With it, you can seamlessly stream your music, photos or video with different platforms.
 
@@ -76,7 +76,7 @@ With this, start your minidlna instance with:
 Remember to block the uPnP port to the outside world via your firewall if you don't want anyone and everyone to have access to your media collection! uPnP uses ports 1900 and 2869.
 
 
-## 3.12.3 - Stream to your Apple Devices with DAAP
+## 3.11.3 - Stream to your Apple Devices with DAAP
 
 If you have an abundance of Apple devices in your home, or are just attached to your iTunes library more than anything else, you can use DAAP streaming instead of (or in addition to) uPnP. The DAAP setup is very similar to that of uPnP, but it will instead allow you to stream directly to iTunes using its "Home Sharing" functionality. There are also DAAP clients for Windows, Linux and Android.
 
@@ -87,7 +87,7 @@ After this, restart the server by running `sudo service forked-daapd restart`. T
 Remember to block the DAAP port to the outside world via your firewall if you don't want anyone and everyone to have access to your media collection! DAAP uses port 3689 for its connections.
 
 
-## 3.12.4 - Further Reading
+## 3.11.4 - Further Reading
 
 * [Securing a Samba Print and File Server - Ubuntu Documentation][1]
 * [NFS HOWTO - Ubuntu Community Documentation][2]

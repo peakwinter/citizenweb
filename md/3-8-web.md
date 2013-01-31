@@ -2,7 +2,7 @@
 
 We will start our web hosts' configuration with Apache. Apache's versatility is one of its best assets. It supports a range of modules that can be added on to expand its usability for different services or applications. New sites can be set up very easily, with the quick creation of VirtualHost file you can be up and running in seconds. As a result this may be one of the shortest guides on the site!
 
-## 3.9.1 - Installing apache2
+## 3.8.1 - Installing apache2
 
 On our Ubuntu server, Apache was most likely installed by default when we chose to install our LAMP server. If for some reason you have no files under `/etc/apache2`, you can install Apache by running:
 
@@ -31,7 +31,7 @@ This is a sample format for a VirtualHost file:
 
 While we can now set up websites via Apache with no problem, it's most likely that you will want to use another platform to manage your content, such as Wordpress or Drupal. These will allow you to automatically add blogs, photo galleries and other content to your site via a clean interface and no coding required. For those, we will need to assemble the next components of our LAMP stack.
 
-## 3.9.2 - Adding Databases and PHP
+## 3.8.2 - Adding Databases and PHP
 
 ### PHP
 
@@ -72,19 +72,19 @@ From here you will be able to add new databases and users as necessary. In brief
 
 Now that we know the basic ins and outs of our MySQL setup, we are ready to install a web application for our new server. You can choose any platform you like based on your needs and what you actually want to do with your server. As an example case, we will go through the installation of WordPress, a simple and easy-to-use blogging platform.
 
-## 3.9.3 - *(Optional)* Install and Run WordPress
+## 3.8.3 - *(Optional)* Install and Run WordPress
 
 WordPress, the wildly popular and effortless blogging platform, is available for installation in the Ubuntu repositories. However, the versions that are usually carried in distribution repositories are often out-of-date by at least a few versions. In order to have the most secure and cutting-edge experience, we will [download the source from WordPress directly][4], then install it to our webserver.
 
 Unzip the install package to a folder of your choosing under `/var/www`. If you want the blog to be at the base of your webserver, such as http://mydomain.com with no subdomains or subfolders required, it is OK to unzip the package to the base `/var/www` directory.
 
-After unzipping, you will need to set up a MySQL database and user that your WordPress installation can use. Go to http://mydomain.com/phpmyadmin, login with your root credentials, and set up a database using the instructions found in 3.9.2. The database can be named anything but usually just "wordpress" suffices. After that, set up a user (named anything, but "wp" seems to be a default). The user should have access to the new "wordpress" database.
+After unzipping, you will need to set up a MySQL database and user that your WordPress installation can use. Go to http://mydomain.com/phpmyadmin, login with your root credentials, and set up a database using the instructions found in 3.8.2. The database can be named anything but usually just "wordpress" suffices. After that, set up a user (named anything, but "wp" seems to be a default). The user should have access to the new "wordpress" database.
 
 Now we are ready for WordPress' "Famous Five-Minute Install." It might even take less time than that! Open up your web browser and go to http://mydomain.com/wp-admin/install.php and follow the on-screen instructions. If you installed your WordPress files to a different location, head there, but make sure you append `/wp-admin/install.php` to the end. It couldn't be more simple to get up and running.
 
 From there, you can customize the themes and modules of your WordPress install to your hearts' content. If you'd like more information on what you can do with WordPress, [head to its website.][5]
 
-## 3.9.4 - Using SSL for Trusted Connections
+## 3.8.4 - Using SSL for Trusted Connections
 
 ### About SSL Certificates
 
@@ -171,9 +171,9 @@ Also, don't forget to enable the Apache ssl module by running:
 Once this is done, enable any new VirtualHost files you created via `sudo a2ensite $name-ssl` and reload your configuration with `sudo service apache2 reload`. Fire up your browser of choice and head to https://mydomain.com and enjoy your encrypted connection!
 
 
- [1]: ../img/3-9-1.jpg
+ [1]: ../img/3-8-1.jpg
  [2]: https://httpd.apache.org/docs/2.2/vhosts/examples.html
- [3]: ../img/3-9-2.jpg
+ [3]: ../img/3-8-2.jpg
  [4]: https://wordpress.org/latest.zip
  [5]: https://wordpress.org/
  [6]: https://namecheap.com
