@@ -1,0 +1,114 @@
+<h2>3.14.1 – What is FreeNAS?</h2>
+
+<p>FreeNAS is a version of the BSD operating system that includes built-in and dedicated tools for operating file storage and media services. It is an excellent choice for those who wish to maximize their ability to oversee and control their media server, and retain a very easy-to-use and easy-to-setup interface.</p>
+
+<p>FreeNAS is not just server software, like most other tools explained in this guide. It is a separate operating system. As such, it is designed to run on a dedicated NAS (network-attached storage) system or virtual machine. A NAS is used primarily to store a large amount of files or media at once, and to host high-capacity hard drives for this.</p>
+
+<p>Oftentimes it is better to run your server under FreeNAS (or run a virtual machine with it) if you are planning on providing a decent amount of filesharing or media streaming services. It is also a good option if you will be using one server, but want to include sufficient controls over your media services and only will be running them on an internal network. By running FreeNAS on a virtual machine separate from your other web server software, you can ensure that external sources will not have the same access to this machine as your web server.</p>
+
+<h2>3.14.2 – Installing FreeNAS</h2>
+
+<p>FreeNAS is installed much like any other Linux-like operating system. Download the full version <a href="http://www.freenas.org/">ISO image</a> from the front page of the FreeNAS website, depending on your architecture. After it is downloaded, you can then burn it to a disc and boot your server from it to begin the installation process. If you want to run FreeNAS in a virtual machine, you can start your ISO with VirtualBox directly to install (check out chapter 3.13 for more information on virtual machines).</p>
+
+<p><img src="../img/3-14-1.jpg" alt="" /></p>
+
+<p>Once you boot from the CD/image, you are greeted with the lovely text-based installer. The instructions here will walk you through choosing the right disk partition. Installing FreeNAS is super easy, it's nearly a one-click installation. Once it is fully installed, it will let you know that it can reboot.</p>
+
+<p>After the reboot, you are sent to its main menu.</p>
+
+<p><img src="../img/3-14-2.jpg" alt="" /></p>
+
+<ul>
+<li>Choose menu option 1 to give FreeNAS a custom IP address, or change the network interface it uses by default. FreeNAS will automatically try to autodetect your network settings and to receive an IP address via DHCP if you do not give it custom settings.</li>
+<li>Menu options 2-6 are used for those who have advanced network configurations and that need to supply link, routing or DNS information manually.</li>
+<li>Menu option 7 is used to reset the username or password used to log into the WebGUI. The WebGUI is the main way to add/remove shares and change settings for FreeNAS.</li>
+<li>Menu option 8 is used to reset your FreeNAS setup to its factory defaults; that is, to remove all of your custom configuration.</li>
+<li>Menu option 9 will bring you to a BSD command prompt, for advanced users only.</li>
+<li>And finally, options 10 and 11 will reboot or shutdown your FreeNAS system.</li>
+</ul>
+
+<p>Note that if your network assigns IP addresses via DHCP, you will need to designate a static IP address for your FreeNAS implementation. You can read more about how to do this in chapter 3.7.</p>
+
+<p>Otherwise, your FreeNAS distribution is running as long as it is at this screen.</p>
+
+<p>To begin setting up your fileshares and continue the configuration, fire up your web browser of choice and navigate to the URL that was listed on the screen. This will take you to the FreeNAS WebGUI.</p>
+
+<p><img src="../img/3-14-3.jpg" alt="" /></p>
+
+<p>After you log in, this is the first screen you are greeted with, showing your basic system information. Menu options are listed along the left side and on the upper menu bar. You can customize various details about your admin account and set up users to connect to your NAS under the "Account" submenu. Under "System" you can configure your FreeNAS' details like time zone, email used for notifications, and other things. The "Network" submenu will allow you to make any changes to your network connection and interfaces that you didn't make in the text-based menu earlier.</p>
+
+<p>The next option, "Storage," will allow you to set up hard drive space to store the files and media that you want to serve with FreeNAS. To begin, click Storage > Volumes.</p>
+
+<ul>
+<li>If you want to use an existing partition on your hard drive, click "Import Volume." Set the name of the volume, then choose the disk/partition you want to use. Then select its filesystem type. Note that FreeNAS only supports filesystems of the UFS, NTFS (Windows), MSDOSFS (old Windows) or ext2fs (older Linux) types.</li>
+<li>If you want to create a new virtual hard drive to be stored on the disk, click Volume Manager. Choose a name for your new volume; it doesn't have to be very descriptive. "NAS" works just fine. Then choose "ZFS". Choose whether or not you wish to use full-disk encryption, though this is not recommended for large file or media servers. If you have more than one disk selected, you can set FreeNAS to mirror or stripe them using RAID (if you are not sure what RAID is, then <a href="https://en.wikipedia.org/wiki/RAID">click here</a>).</li>
+</ul>
+
+<p>Once your volume is set up, you are free to set up the sharing services you want to run on your FreeNAS server.</p>
+
+<h2>3.14.3 – Using FreeNAS Services</h2>
+
+<p>FreeNAS supports a wide range of services to extend your server's use. We will begin with setting up two basic services: NFS file shares for Linux-based computers, and CIFS/Samba file shares for Windows-based computers. Note that you can also use Samba file sharing on Apple-based hardware, and it is much better than Apple's proprietary AFP service.</p>
+
+<h3>NFS</h3>
+
+<p>To set up NFS file shares on your FreeNAS box, click Sharing > Unix (NFS) Shares, then click Add Unix (NFS) Share.</p>
+
+<p><img src="../img/3-14-4.jpg" alt="" /></p>
+
+<ol>
+<li>Add a "comment" that can identify your share on some systems.</li>
+<li>Choose the path for your share on the local drive. This should match the mount point path that you created during the Storage step above.</li>
+<li>If you want to limit the share to only be accessible to a certain IP address or range, enter it here.</li>
+<li>If you want to make your share read-only to all users, check the "Read Only" box. Otherwise, permissions will default to the Unix file permissions that your files have on the server.</li>
+<li>Set any of the other advanced permissions if need be, then click "OK" when done to create your new share.</li>
+</ol>
+
+<p>To activate your newly-created share, click Services > Control Services, then toggle the On switch next to NFS. To connect to your NFS share on a Linux-based computer, run the following command with the appropriate values. Remember that you must set up a local folder to act as the placeholder when it is mounted.</p>
+
+<p><code>sudo mount $ip-address:/path/to/mount /path/to/local/folder</code></p>
+
+<h3>CIFS/Samba</h3>
+
+<p>To set up CIFS file shares on your FreeNAS box, click Sharing > Windows (CIFS) Shares, then click Add Windows (CIFS) Share.</p>
+
+<ol>
+<li>Add a name and/or a "comment" that can identify your share on some systems.</li>
+<li>Choose the path for your share on the local drive. This should match the mount point path that you created during the Storage step above.</li>
+<li>If you want your share to be browsable by clients in Windows Explorer (which you probably do), check the "Browsable to Network Clients" box.</li>
+<li>If you want to make your share available to guest users, i.e. users that do not need to log into your server with a username/password, check "Allow Guest Access." You can also check "Only Allow Guest Access" if you do not want people to be able to log in via a user account.</li>
+<li>Set any of the other advanced permissions if need be, then click "OK" when done to create your new share.</li>
+</ol>
+
+<p>To activate your newly-created share, click Services > Control Services, then toggle the On switch next to CIFS. </p>
+
+<p>To view the share on your Windows computer, go to My Computer, then type your computer's address like so: <code>\$ip-address/$mount-name</code>. Or, you can mount the share like a drive by right-clicking "My Computer" and choosing "Map Network Drive."</p>
+
+<p>To view the share on your Mac computer, open Finder. You should see the share show up in the left-hand side of your finder. If not, go to the menu and click Go > Connect to Server. Type <code>smb://$ip-address/$mount-name</code> then click OK.</p>
+
+<h3>Other Services</h3>
+
+<p>Here is a quick rundown of other services you might find useful on your FreeNAS implementation.</p>
+
+<ul>
+<li><strong>AFP</strong>: The proprietary system used to share files to Mac and iOS systems.</li>
+<li><strong>Active Directory</strong>: Allows you to use your FreeNAS server as an AD server for connected Windows machines.</li>
+<li><strong>Dynamic DNS</strong>: Use this to connect your FreeNAS server to a Dynamic DNS service, which will allow an Internet-connected server without a static IP address to always use the same domain name.</li>
+<li><strong>FTP</strong>: Use your FreeNAS server as an FTP server for the files it hosts.</li>
+<li><strong>iSCSI</strong>: Connect your FreeNAS server to an iSCSI storage host.</li>
+<li><strong>LDAP</strong>: Connect your FreeNAS server as an LDAP host, and allow it to manage your share's authentication.</li>
+<li><strong>Plugins</strong>: This is an <a href="http://doc.freenas.org/index.php/Plugins">advanced feature</a> that can allow you to use special plugins for other services like uPnP, DAAP, torrents, etc. The feature is still in beta.</li>
+<li><strong>Rsync</strong>: Set up a FreeNAS share as a dedicated rsync folder for automating file synchronization between Linux clients.</li>
+<li><strong>SNMP</strong>: Use your FreeNAS server as an SNMP share, for monitoring the status of other network devices.</li>
+<li><strong>S.M.A.R.T.</strong>: Use the SMART disk reporting service on your FreeNAS volumes to email you when your disks are unhealthy or need to be checked.</li>
+<li><strong>SSH</strong>: Allow logins to your FreeNAS server via SSH.</li>
+<li><strong>TFTP</strong>: Establish a TFTP share with on your FreeNAS server. TFTP is a lightweight version of FTP used for minimal tasks like PXE network boots.</li>
+<li><strong>UPS</strong>: Configure FreeNAS to work with a connected UPS power supply.</li>
+</ul>
+
+<h2>3.14.4 – Further Reading</h2>
+
+<ul>
+<li><a href="http://doc.freenas.org">FreeNAS Documentation</a></li>
+</ul>
+
