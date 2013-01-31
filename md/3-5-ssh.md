@@ -11,7 +11,7 @@ Chances are that our Ubuntu Server came with OpenSSH already installed (that's h
 
 `sudo apt-get install openssh-server` 
 
-Most of the configuration for OpenSSH is stored in `/etc/ssh/sshd_config`. This is your first stop for any additional configuration options, such as denying root login or allowing public-key authentication. We will cover these options in detail in chapter 3.13.
+Most of the configuration for OpenSSH is stored in `/etc/ssh/sshd_config`. This is your first stop for any additional configuration options, such as denying root login or allowing public-key authentication.
 
 The great thing about SSH is that (in most cases) it works right out of the box. First, make sure the server is running:
 
