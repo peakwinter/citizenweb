@@ -1,3 +1,5 @@
+(Note that Virtual Private Server (VPS) users can skip this article entirely. Embedded miniserver users like those with the Raspberry Pi can skip down to section 3.2.3.)
+
 ## 3.2.1 - List Your Options
 
 What do you want your server to do? What will it be handling for you on a daily basis? These are important questions to answer before shopping for your server hardware.
