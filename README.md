@@ -41,7 +41,7 @@ If you're still not convinced why all of this is important, or if you aren't eve
 3. Setting Up Your Personal Server
 	1. Why a Personal Server?
 	2. Before You Begin: Options, Configuration and Hardware
-	3. ~~Assembling Your Server/PC~~ Coming with version 2.0 in May 2013
+	3. ~~Assembling Your Server/PC~~ Coming with version 1.5 in May 2013
 	4. Installing and Configuring Ubuntu Server
 	5. Getting In: Project to SSH and VNC
 	6. Networking: Setting up DHCP, DNS and NAT Forwarding
