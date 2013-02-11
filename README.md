@@ -64,6 +64,7 @@ If you're still not convinced why all of this is important, or if you aren't eve
 Adding Linux Articles:
  1. Installation Project: Arch Linux
  2. Arch Linux: Using and Configuring Your New System
+ 3. Personalize Your Linux Desktop (openbox, conky, etc)
 
 Updating Linux Articles:
  1. Add to _APPENDIX: Popular Software & Open File Formats_: VoIP/Chat with Jitsi and Jabber
@@ -71,6 +72,10 @@ Updating Linux Articles:
 Adding Server Articles:
  1. Decentralized Social with Tent and BuddyCloud
  2. Chat and VoIP with Jabber/SIP
+
+Adding Crash Course Articles:
+ 1. Introduction to cron and bash
+ 2. Security Tips for non-Linux Operating Systems
 
 --
 
