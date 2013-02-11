@@ -41,7 +41,7 @@ If you're still not convinced why all of this is important, or if you aren't eve
 3. Setting Up Your Personal Server
 	1. Why a Personal Server?
 	2. Before You Begin: Options, Configuration and Hardware
-	3. Assembling Your Server/PC
+	3. ~~Assembling Your Server/PC~~ Coming with version 2.0 in May 2013
 	4. Installing and Configuring Ubuntu Server
 	5. Getting In: Project to SSH and VNC
 	6. Networking: Setting up DHCP, DNS and NAT Forwarding
@@ -55,9 +55,25 @@ If you're still not convinced why all of this is important, or if you aren't eve
 4. Crash Courses
 	1. Backup Your Data
 
+--
+
+### Roadmap
+
+**v1.5 - May 2013**
+
+Adding Linux Articles:
+ 1. Installation Project: Arch Linux
+ 2. Arch Linux: Using and Configuring Your New System
+
+Updating Linux Articles:
+ 1. Add to _APPENDIX: Popular Software & Open File Formats_: VoIP/Chat with Jitsi and Jabber
+
+Adding Server Articles:
+ 1. Decentralized Social with Tent and BuddyCloud
+ 2. Chat and VoIP with Jabber/SIP
 
 --
 
 This guide is openly available and developed - Licensed under Creative Commons CC-BY-SA 3.0
-Any suggestions are welcome -- submit them via a git request at 
-https://github.com/cznweb/citizenweb or email them direct to jacob [at] citizenweb [dot] is
+
+Any suggestions are welcome -- submit them via a git request at https://github.com/cznweb/citizenweb or email them direct to jacob [at] citizenweb [dot] is
